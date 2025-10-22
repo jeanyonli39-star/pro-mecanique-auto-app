@@ -1,0 +1,58 @@
+
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Pro Mécanique Auto</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="top">
+    <img src="logo.png" alt="Logo" class="logo-small">
+    <div class="title">
+      <h1>Pro Mécanique Auto</h1>
+      <p class="slogan">Service auto rapide et garanti</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="search">
+      <input id="q" placeholder="Recherche" />
+    </div>
+
+    <section class="grid">
+      <a class="card"><img src="icons/car.png"><span>Mécanicien auto</span></a>
+      <a class="card"><img src="icons/electric.png"><span>Électricien auto</span></a>
+      <a class="card"><img src="icons/paint.png"><span>Carrosserie / Peinture</span></a>
+      <a class="card"><img src="icons/parts.png"><span>Vente de pièces détachées</span></a>
+      <a class="card"><img src="icons/diagnostic.png"><span>Diagnostic / Scanner auto</span></a>
+      <a class="card"><img src="icons/battery.png"><span>Climatisation / Batterie</span></a>
+      <a class="card"><img src="icons/injector.png"><span>Pompiers / Injection</span></a>
+      <a class="card"><img src="icons/user.png"><span>Espace Client</span></a>
+    </section>
+
+    <section class="parts">
+      <h2>Vente rapide</h2>
+      <div class="parts-list">
+        <div class="part"><strong>Filtre à huile</strong><div class="price">Prix: à définir</div></div>
+        <div class="part"><strong>Bougie d'allumage</strong><div class="price">Prix: à définir</div></div>
+      </div>
+    </section>
+  </main>
+
+  <nav class="bottom">
+    <a>Accueil</a><a>Vidéos</a><a>Clients</a><a>Tableau</a>
+  </nav>
+
+  <script>
+    document.getElementById('q').addEventListener('input', function(e){
+      const q = e.target.value.toLowerCase();
+      document.querySelectorAll('.grid .card').forEach(c=>{
+        const txt = c.innerText.toLowerCase();
+        c.style.display = txt.indexOf(q) !== -1 ? 'flex' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
