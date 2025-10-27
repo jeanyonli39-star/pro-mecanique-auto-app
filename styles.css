@@ -1,32 +1,109 @@
 
-:root{--blue:#0b4f88;--light:#f6f7f9;--card:#123a63;}
-*{box-sizing:border-box;font-family:system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;}
-body{margin:0;background:linear-gradient(180deg,var(--blue),#05345a);color:#fff;min-height:100vh;}
-.splash{display:flex;align-items:center;justify-content:center;padding:30px;}
-.splash-box{background:linear-gradient(180deg,#0b4f88,#06365a);text-align:center;padding:26px;border-radius:18px;width:92%;max-width:420px;}
-.logo{width:84px;height:84px;object-fit:contain;margin-bottom:6px;}
-h1{font-size:28px;margin:6px 0;}
-.slogan{color:rgba(255,255,255,0.9);margin:4px 0 12px;}
-.enter-btn{display:inline-block;background:#fff;color:var(--blue);padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:700;margin-top:10px;}
-.ill{width:80%;max-width:300px;margin:12px auto;display:block;opacity:0.95;}
-.small{font-size:12px;color:rgba(255,255,255,0.85);margin-top:8px;}
+/* ----- STYLE GLOBAL ----- */
+body {
+  font-family: "Poppins", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f6f8;
+  color: #222;
+  line-height: 1.6;
+}
 
-header.top{display:flex;align-items:center;gap:12px;padding:18px;background:var(--blue);position:sticky;top:0;}
-.logo-small{width:56px;height:56px;}
-.title h1{margin:0;font-size:20px;}
-.title .slogan{margin:0;font-size:13px;opacity:0.95;color:rgba(255,255,255,0.95);}
+/* ----- EN-TÊTE ----- */
+header {
+  background-color: #0a74da;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+}
 
-.container{background:#f6f7f9;color:#123;margin-top:14px;border-top-left-radius:18px;border-top-right-radius:18px;padding:18px 14px 80px;min-height:60vh;}
-.search input{width:100%;padding:12px;border-radius:12px;border:1px solid #e6e9ee;font-size:16px;}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:14px;}
-.card{background:white;color:var(--blue);padding:14px;border-radius:12px;display:flex;align-items:center;gap:10px;text-decoration:none;box-shadow:0 6px 14px rgba(10,10,10,0.06);}
-.card img{width:36px;height:36px;opacity:0.95;}
-.card span{font-weight:700;font-size:15px;}
+header img {
+  width: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
 
-.parts{margin-top:18px;}
-.parts-list{display:flex;gap:10px;flex-direction:column;}
-.part{background:#fff;padding:10px;border-radius:10px;color:var(--blue);font-weight:700;}
-.price{font-weight:400;font-size:13px;color:#666;margin-top:6px;}
+header h1 {
+  font-size: 1.8em;
+  margin: 5px 0;
+}
 
-.bottom{position:fixed;left:0;right:0;bottom:0;background:#fff;padding:10px 18px;display:flex;justify-content:space-around;border-top-left-radius:18px;border-top-right-radius:18px;}
-.bottom a{color:var(--blue);font-weight:700;text-decoration:none;}
+header p {
+  font-size: 1em;
+  opacity: 0.9;
+}
+
+/* ----- CONTENU PRINCIPAL ----- */
+main {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 15px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* ----- SECTIONS ----- */
+section {
+  margin-bottom: 40px;
+}
+
+section h2 {
+  color: #0a74da;
+  border-left: 6px solid #0a74da;
+  padding-left: 10px;
+  margin-bottom: 15px;
+}
+
+section p {
+  font-size: 1.05em;
+}
+
+/* ----- LISTE DES SERVICES ----- */
+#services ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+#services li {
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+#services li:hover {
+  background: #e6f0ff;
+  transform: scale(1.03);
+}
+
+#services img {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+/* ----- CONTACT ----- */
+#contact {
+  text-align: center;
+}
+
+#contact p {
+  font-size: 1.1em;
+}
+
+/* ----- PIED DE PAGE ----- */
+footer {
+  background-color: #0a74da;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9em;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
