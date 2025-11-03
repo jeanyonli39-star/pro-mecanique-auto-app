@@ -1,98 +1,118 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Pro Mécanique Auto</title>
-  <link rel="stylesheet" href="style.css">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f9f9f9;
-      color: #333;
-      text-align: center;
-    }
-    header {
-      background-color: #004aad;
-      color: white;
-      padding: 20px 0;
-    }
-    header img {
-      width: 100px;
-      height: auto;
-      margin-bottom: 10px;
-    }
-    h1 {
-      margin: 0;
-      font-size: 28px;
-      font-weight: bold;
-    }
-    main {
-      padding: 20px;
-    }
-    .metiers {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-    .metier {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      padding: 15px;
-      transition: transform 0.3s;
-    }
-    .metier:hover {
-      transform: scale(1.05);
-    }
-    .metier img {
-      width: 100%;
-      max-width: 120px;
-      margin-bottom: 10px;
-    }
-    footer {
-      background-color: #004aad;
-      color: white;
-      padding: 10px 0;
-      margin-top: 40px;
-      font-size: 14px;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>
-    <img src="https://raw.githubusercontent.com/jeanyonli39-star/pro-mecanique-auto-app/refs/heads/main/images/logo.png" alt="Logo Pro Mécanique Auto">
-    <h1>Pro Mécanique Auto</h1>
-  </header>
-
-  <main>
-    <h2>Découvrez nos métiers</h2>
-    <div class="metiers">
-      <div class="metier">
-        <img src="https://raw.githubusercontent.com/jeanyonli39-star/pro-mecanique-auto-app/refs/heads/main/images/logo.png" alt="Mécanique générale">
-        <p>Mécanique générale</p>
-      </div>
-      <div class="metier">
-        <img src="https://raw.githubusercontent.com/jeanyonli39-star/pro-mecanique-auto-app/refs/heads/main/images/logo.png" alt="Injection diesel">
-        <p>Injection diesel</p>
-      </div>
-      <div class="metier">
-        <img src="https://raw.githubusercontent.com/jeanyonli39-star/pro-mecanique-auto-app/refs/heads/main/images/logo.png" alt="Électricité auto">
-        <p>Électricité auto</p>
-      </div>
-      <div class="metier">
-        <img src="https://raw.githubusercontent.com/jeanyonli39-star/pro-mecanique-auto-app/refs/heads/main/images/logo.png" alt="Vente de pièces">
-        <p>Vente de pièces</p>
+  <header class="site-header">
+    <div class="header-inner">
+      <img id="site-logo" src="images/logo.png" alt="Pro Mécanique Auto - logo">
+      <div class="header-right">
+        <h1>Pro Mécanique Auto</h1>
+        <p class="slogan">Service auto rapide et garanti</p>
       </div>
     </div>
+
+    <div class="search-bar">
+      <input id="searchInput" type="search" placeholder="Rechercher métier ou pièce..." aria-label="Rechercher métier ou pièce">
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="metiersSection">
+      <h2>Nos métiers</h2>
+      <div id="grid" class="grid"></div>
+    </section>
+
+    <section id="venteSection">
+      <h2>Vente Pro Mécanique Auto (mes produits)</h2>
+      <div class="vente-box">
+        <p>Cette partie t'appartient — gère tes produits.</p>
+        <div class="vente-actions">
+          <a id="whatsappBtn" class="btn whatsapp" href="https://wa.me/22660187134?text=Bonjour%20je%20veux%20commander%20une%20pi%C3%A8ce" target="_blank" rel="noopener">Commander via WhatsApp</a>
+          <a class="btn call" href="tel:+22656259675">Appel direct</a>
+        </div>
+      </div>
+      <div id="produitsList" class="produits-list">
+        <!-- Exemples de produit (tu peux modifier depuis le HTML ou plus tard ajouter une gestion) -->
+        <div class="produit">
+          <h3>Filtre à huile</h3>
+          <p>Prix : à définir</p>
+          <a class="btn order" href="https://wa.me/22660187134?text=Bonjour%20je%20veux%20acheter%20Filtre%20%C3%A0%20huile" target="_blank">Commander</a>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    <p>© 2025 Pro Mécanique Auto - Tous droits réservés</p>
+  <footer class="site-footer">
+    <nav class="footer-nav">
+      <a href="#">Accueil</a>
+      <a href="#">Vidéos</a>
+      <a href="#">Clients</a>
+      <a href="#">Tableau</a>
+    </nav>
+    <p>© 2025 Pro Mécanique Auto — Contact : +226 60187134 / +226 56259675</p>
   </footer>
+
+  <script>
+    /********** Données (nommage des images doit correspondre) **********/
+    const metiers = [
+      { key: 'mecanicien', title: 'Mécanicien auto', img: 'images/mecanicien.png', tags: ['mécanique','mécanicien','moteur'] },
+      { key: 'electricien', title: 'Électricien auto', img: 'images/electricien.png', tags: ['électrique','batterie','électricité'] },
+      { key: 'climatisation', title: 'Climatisation auto', img: 'images/climatisation.png', tags: ['clim','climatisation','aircon'] },
+      { key: 'vente-pieces', title: 'Vente de pièces', img: 'images/vente-pieces.png', tags: ['pièces','vente','accessoires'] },
+      { key: 'freinage', title: 'Freinage', img: 'images/freinage.png', tags: ['frein','plaquettes','disque'] },
+      { key: 'suspension', title: 'Suspension', img: 'images/suspension.png', tags: ['suspension','amortisseur','train'] },
+      { key: 'injection', title: 'Injection', img: 'images/injection.png', tags: ['injecteur','pompe','injection'] },
+      { key: 'diagnostic', title: 'Diagnostic auto', img: 'images/diagnostic.png', tags: ['diag','scanner','erreur'] },
+      { key: 'carrosserie', title: 'Carrosserie', img: 'images/carrosserie.png', tags: ['carrosserie','peinture','carrosser'] },
+      { key: 'peinture', title: 'Peinture', img: 'images/peinture.png', tags: ['peinture','spray','color'] }
+    ];
+
+    /********** Rendu initial **********/
+    const grid = document.getElementById('grid');
+
+    function createCard(m) {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-img-wrap"><img loading="lazy" src="${m.img}" alt="${m.title}" onerror="this.style.opacity=0.5; this.nextElementSibling.style.display='block'"></div>
+        <p class="card-title">${m.title}</p>
+      `;
+      return card;
+    }
+
+    function renderAll(list) {
+      grid.innerHTML = '';
+      list.forEach(m => grid.appendChild(createCard(m)));
+    }
+
+    renderAll(metiers);
+
+    /********** Recherche (filtre métiers + produits) **********/
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.trim().toLowerCase();
+      if (!q) { renderAll(metiers); return; }
+      const filtered = metiers.filter(m => {
+        const inTitle = m.title.toLowerCase().includes(q);
+        const inTags = m.tags.join(' ').toLowerCase().includes(q);
+        return inTitle || inTags;
+      });
+      renderAll(filtered);
+      // On pourrait aussi filtrer produits (liste produitsList) si tu souhaites
+    });
+
+    /********** Remarque sur images 404 **********
+     * Si les images n'apparaissent pas, vérifie :
+     * - le dossier 'images' existe à la racine du repo
+     * - les fichiers portent exactement les noms listés plus haut (minuscules et tirets)
+     * - si nécessaire, remplace m.img par le lien raw.githubusercontent de ton image
+     */
+
+  </script>
 </body>
 </html>
