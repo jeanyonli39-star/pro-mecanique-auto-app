@@ -114,34 +114,45 @@
     const searchInput = document.getElementById('searchInput');
     searchInput.addEventListener('input', () => {
       const q = searchInput.value.trim().toLowerCase();
-      if (!q) { renderAll(metiers); return; }
+      if (!q) renderAll(metiers);
+
+    /********** Recherche (filtre métiers + produits) **********/
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', () => {
+      const q = searchInput.value.trim().toLowerCase();
+      if (!q) {
+        renderAll(metiers);
+        return;
+      }
+
       const filtered = metiers.filter(m => {
         const inTitle = m.title.toLowerCase().includes(q);
         const inTags = m.tags.join(' ').toLowerCase().includes(q);
         return inTitle || inTags;
       });
+
       renderAll(filtered);
-      // On pourrait aussi filtrer produits (liste produitsList) si tu souhaites
     });
 
     /********** Remarque sur images 404 **********
      * Si les images n'apparaissent pas, vérifie :
      * - le dossier 'images' existe à la racine du repo
-     * - les fichiers portent exactement les noms listés plus haut (minuscules et tirets)
+     * - les fichiers portent exactement les noms listés plus haut
      * - si nécessaire, remplace m.img par le lien raw.githubusercontent de ton image
      */
+  </script>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 
-<script>
-document.getElementById("btnInscription").addEventListener("click", function() {
-  document.getElementById("zoneAuth").style.display = "block";
-});
+  <script>
+    document.getElementById("btnInscription").addEventListener("click", function() {
+      document.getElementById("zoneAuth").style.display = "block";
+    });
 
-document.getElementById("btnCreerCompte").addEventListener("click", function() {
-  alert("Le formulaire fonctionne !");
-});
-</script>
+    document.getElementById("btnCreerCompte").addEventListener("click", function() {
+      alert("Le formulaire fonctionne !");
+    });
+  </script>
 
 </body>
 </html>
