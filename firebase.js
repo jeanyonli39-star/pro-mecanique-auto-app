@@ -4,7 +4,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
-const firebaseConfig = {
+const firebaseConfig = { const app = initializeApp(firebaseConfig);
   apiKey: "AIzaSyDBtZTROKkGWZ1WeX3KLXvyXe48oS1B3zg",
   authDomain: "promecaniqueauto.firebaseapp.com",
   projectId: "promecaniqueauto",
