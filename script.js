@@ -1,13 +1,10 @@
 // ===============================
 // PRO MECANIQUE AUTO
-// Script principal
 // ===============================
 
 console.log("Pro Mécanique Auto chargé");
 
-// -------------------------------
-// Afficher le formulaire d'inscription
-// -------------------------------
+// ---------- INSCRIPTION ----------
 
 const btnInscription = document.getElementById("btnInscription");
 const zoneAuth = document.getElementById("zoneAuth");
@@ -15,12 +12,23 @@ const zoneAuth = document.getElementById("zoneAuth");
 if (btnInscription && zoneAuth) {
     btnInscription.addEventListener("click", () => {
         zoneAuth.style.display = "block";
+        document.getElementById("zoneConnexion").style.display = "none";
     });
 }
 
-// -------------------------------
-// Bouton créer un compte
-// -------------------------------
+// ---------- CONNEXION ----------
+
+const btnConnexion = document.getElementById("btnConnexion");
+const zoneConnexion = document.getElementById("zoneConnexion");
+
+if (btnConnexion && zoneConnexion) {
+    btnConnexion.addEventListener("click", () => {
+        zoneConnexion.style.display = "block";
+        zoneAuth.style.display = "none";
+    });
+}
+
+// ---------- CREATION COMPTE ----------
 
 const btnCreerCompte = document.getElementById("btnCreerCompte");
 
@@ -33,23 +41,33 @@ if (btnCreerCompte) {
         const motdepasse = document.getElementById("motdepasse").value.trim();
         const typeCompte = document.getElementById("typeCompte").value;
 
-        if (
-            nom === "" ||
-            email === "" ||
-            motdepasse === ""
-        ) {
-
+        if (!nom || !email || !motdepasse) {
             alert("Veuillez remplir tous les champs.");
-
             return;
         }
 
-        alert(
-            "Informations reçues :\n\n" +
-            "Nom : " + nom +
-            "\nEmail : " + email +
-            "\nType : " + typeCompte
-        );
+        alert("Le formulaire d'inscription est prêt.");
+    });
+
+}
+
+// ---------- CONNEXION ----------
+
+const btnConnexionCompte = document.getElementById("btnConnexionCompte");
+
+if (btnConnexionCompte) {
+
+    btnConnexionCompte.addEventListener("click", () => {
+
+        const email = document.getElementById("emailConnexion").value.trim();
+        const motdepasse = document.getElementById("motdepasseConnexion").value.trim();
+
+        if (!email || !motdepasse) {
+            alert("Veuillez remplir tous les champs.");
+            return;
+        }
+
+        alert("Le formulaire de connexion est prêt.");
 
     });
 
