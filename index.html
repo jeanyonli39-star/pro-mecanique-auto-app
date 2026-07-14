@@ -1,163 +1,223 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Pro Mécanique Auto</title>
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pro Mécanique Auto</title>
+
+<link rel="stylesheet" href="styles.css">
+
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#0d6efd">
+
+<link rel="icon" href="images/logo.png">
+
 </head>
+
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <img id="site-logo" src="images/logo.png" alt="Pro Mécanique Auto - logo">
-      <div class="header-right">
-        <h1>Pro Mécanique Auto</h1>
-        <p class="slogan">Service auto rapide et garanti</p>
-      </div>
-    </div>
 
-    <div class="search-bar">
-      <input id="searchInput" type="search" placeholder="Rechercher métier ou pièce..." aria-label="Rechercher métier ou pièce">
-    </div> <div style="text-align:center; margin-top:10px;">
-  <button id="btnInscription">S'inscrire</button>
-  <button id="btnConnexion">Se connecter</button>
-</div> <div id="zoneAuth" <div id="zoneConnexion" style="display:none; background:white; padding:15px; margin:10px; border-radius:10px;">
+<header class="site-header">
 
-  <h3>Connexion</h3>
+<div class="header-inner">
 
-  <input type="email"
-         id="emailConnexion"
-         placeholder="Adresse email"
-         style="width:100%;padding:10px;margin:5px 0;">
+<img src="images/logo.png" id="site-logo" alt="Logo">
 
-  <input type="password"
-         id="motdepasseConnexion"
-         placeholder="Mot de passe"
-         style="width:100%;padding:10px;margin:5px 0;">
+<div>
 
-  <button id="btnConnexionCompte">
-      Se connecter
-  </button>
+<h1>PRO MÉCANIQUE AUTO</h1>
 
-</div> style="display:none; background:white; padding:15px; margin:10px; border-radius:10px;">
-  <h3>Inscription</h3>
+<p>Service auto rapide et garanti</p>
 
-  <input type="text" id="nom" placeholder="Nom complet" style="width:100%;padding:10px;margin:5px 0;">
-
-  <input type="email" id="email" placeholder="Adresse email" style="width:100%;padding:10px;margin:5px 0;">
-
-  <input type="password" id="motdepasse" placeholder="Mot de passe" style="width:100%;padding:10px;margin:5px 0;">
-
-  <select id="typeCompte" style="width:100%;padding:10px;margin:5px 0;">
-    <option value="client">Client</option>
-    <option value="artisan">Artisan</option>
-  </select>
-
-  <button id="btnCreerCompte">Créer mon compte</button>
 </div>
-  </header>
 
-  <main class="container">
-    <section id="metiersSection">
-      <h2>Nos métiers</h2>
-      <div id="grid" class="grid"></div>
-    </section>
+</div>
 
-    <section id="venteSection">
-      <h2>Vente Pro Mécanique Auto (mes produits)</h2>
-      <div class="vente-box">
-        <p>Cette partie t'appartient — gère tes produits.</p>
-        <div class="vente-actions">
-          <a id="whatsappBtn" class="btn whatsapp" href="https://wa.me/22660187134?text=Bonjour%20je%20veux%20commander%20une%20pi%C3%A8ce" target="_blank" rel="noopener">Commander via WhatsApp</a>
-          <a class="btn call" href="tel:+22656259675">Appel direct</a>
-        </div>
-      </div>
-      <div id="produitsList" class="produits-list">
-        <!-- Exemples de produit (tu peux modifier depuis le HTML ou plus tard ajouter une gestion) -->
-        <div class="produit">
-          <h3>Filtre à huile</h3>
-          <p>Prix : à définir</p>
-          <a class="btn order" href="https://wa.me/22660187134?text=Bonjour%20je%20veux%20acheter%20Filtre%20%C3%A0%20huile" target="_blank">Commander</a>
-        </div>
-      </div>
-    </section>
-  </main>
+<div class="search-bar">
 
-  <footer class="site-footer">
-    <nav class="footer-nav">
-      <a href="#">Accueil</a>
-      <a href="#">Vidéos</a>
-      <a href="#">Clients</a>
-      <a href="#">Tableau</a>
-    </nav>
-    <p>© 2025 Pro Mécanique Auto — Contact : +226 60187134 / +226 56259675</p>
-  </footer>
+<input
+id="searchInput"
+type="search"
+placeholder="Rechercher un métier ou une pièce automobile...">
 
-  <script>
-    /********** Données (nommage des images doit correspondre) **********/
-    const metiers = [
-      { key: 'mecanicien', title: 'Mécanicien auto', img: 'images/mecanicien.png', tags: ['mécanique','mécanicien','moteur'] },
-      { key: 'electricien', title: 'Électricien auto', img: 'images/electricien.png', tags: ['électrique','batterie','électricité'] },
-      { key: 'climatisation', title: 'Climatisation auto', img: 'images/climatisation.png', tags: ['clim','climatisation','aircon'] },
-      { key: 'vente-pieces', title: 'Vente de pièces', img: 'images/pieces-auto.png', tags: ['pièces','vente','accessoires'] },
-      { key: 'freinage', title: 'Freinage', img: 'images/freinage.png', tags: ['frein','plaquettes','disque'] },
-      { key: 'suspension', title: 'Suspension', img: 'images/suspension.png', tags: ['suspension','amortisseur','train'] },
-      { key: 'injection', title: 'Injection', img: 'images/injection.png', tags: ['injecteur','pompe','injection'] },
-      { key: 'diagnostic', title: 'Diagnostic auto', img: 'images/diagnostic.png', tags: ['diag','scanner','erreur'] },
-      { key: 'carrosserie', title: 'Carrosserie', img: 'images/carrosserie.png', tags: ['carrosserie','peinture','carrosser'] },
-      { key: 'peinture', title: 'Peinture', img: 'images/peinture.png', tags: ['peinture','spray','color'] }
-    ];
+</div>
 
-    /********** Rendu initial **********/
-    const grid = document.getElementById('grid');
+<div class="header-buttons">
 
-    function createCard(m) {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <div class="card-img-wrap"><img loading="lazy" src="${m.img}" alt="${m.title}" onerror="this.style.opacity=0.5; this.nextElementSibling.style.display='block'"></div>
-        <p class="card-title">${m.title}</p>
-      `;
-      return card;
-    }
+<button id="btnInscription">
+S'inscrire
+</button>
 
-    function renderAll(list) {
-      grid.innerHTML = '';
-      list.forEach(m => grid.appendChild(createCard(m)));
-    }
+<button id="btnConnexion">
+Se connecter
+</button>
 
-    renderAll(metiers);
+</div>
 
-    /********** Recherche (filtre métiers + produits) **********/
+<!-- Fenêtre d'inscription -->
 
-    /********** Recherche (filtre métiers + produits) **********/
-    const searchInput = document.getElementById('searchInput');
-    searchInput.addEventListener('input', () => {
-      const q = searchInput.value.trim().toLowerCase();
-      if (!q) {
-        renderAll(metiers);
-        return;
-      }
+<div id="zoneAuth" style="display:none;">
 
-      const filtered = metiers.filter(m => {
-        const inTitle = m.title.toLowerCase().includes(q);
-        const inTags = m.tags.join(' ').toLowerCase().includes(q);
-        return inTitle || inTags;
-      });
+<h2>Créer un compte</h2>
 
-      renderAll(filtered);
-    });
+<input
+type="text"
+id="nom"
+placeholder="Nom complet">
 
-    /********** Remarque sur images 404 **********
-     * Si les images n'apparaissent pas, vérifie :
-     * - le dossier 'images' existe à la racine du repo
-     * - les fichiers portent exactement les noms listés plus haut
-     * - si nécessaire, remplace m.img par le lien raw.githubusercontent de ton image
-     */
-  </script>
+<input
+type="email"
+id="email"
+placeholder="Adresse e-mail">
 
-  <script type="module" src="firebase.js"></script>
+<input
+type="password"
+id="motdepasse"
+placeholder="Mot de passe">
+
+<select id="typeCompte">
+
+<option value="client">
+Client
+</option>
+
+<option value="artisan">
+Artisan
+</option>
+
+</select>
+
+<button id="btnCreerCompte">
+Créer mon compte
+</button>
+
+</div>
+
+<!-- Fenêtre connexion -->
+
+<div id="zoneConnexion" style="display:none;">
+
+<h2>Connexion</h2>
+
+<input
+type="email"
+id="emailConnexion"
+placeholder="Adresse e-mail">
+
+<input
+type="password"
+id="motdepasseConnexion"
+placeholder="Mot de passe">
+
+<button id="btnConnexionCompte">
+Se connecter
+</button>
+
+</div>
+
+</header>
+
+<main class="container">
+
+<section id="metiersSection">
+
+<h2>Nos métiers</h2>
+
+<div id="grid" class="grid">
+
+<!-- Les métiers seront ajoutés par JavaScript -->
+
+</div>
+
+</section><section id="venteSection">
+
+<h2>Vente Pro Mécanique Auto</h2>
+
+<div class="vente-box">
+
+<p>
+Bienvenue dans notre espace de vente de pièces automobiles.
+</p>
+
+<div class="vente-actions">
+
+<a id="whatsappBtn"
+class="btn whatsapp"
+href="https://wa.me/22660187134?text=Bonjour%20je%20souhaite%20commander%20une%20pi%C3%A8ce"
+target="_blank">
+
+Commander via WhatsApp
+
+</a>
+
+<a
+class="btn call"
+href="tel:+22656259675">
+
+Appel direct
+
+</a>
+
+</div>
+
+</div>
+
+<div id="produitsList" class="produits-list">
+
+<div class="produit">
+
+<h3>Filtre à huile</h3>
+
+<p>Prix : À définir</p>
+
+<a
+class="btn order"
+href="https://wa.me/22660187134?text=Bonjour%20je%20veux%20acheter%20un%20filtre%20%C3%A0%20huile"
+target="_blank">
+
+Commander
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<footer class="site-footer">
+
+<nav class="footer-nav">
+
+<a href="#">Accueil</a>
+
+<a href="#">Métiers</a>
+
+<a href="#">Pièces</a>
+
+<a href="#">Contact</a>
+
+</nav>
+
+<p>
+
+© 2026 Pro Mécanique Auto
+
+<br>
+
+Burkina Faso
+
+</p>
+
+</footer>
+
 <script src="script.js"></script>
 
+<script type="module" src="firebase.js"></script>
+
 </body>
+
 </html>
