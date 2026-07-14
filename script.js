@@ -1,74 +1,178 @@
-// ===============================
+// ==============================
 // PRO MECANIQUE AUTO
-// ===============================
+// script.js
+// ==============================
 
-console.log("Pro Mécanique Auto chargé");
+console.log("Pro Mecanique Auto chargé");
 
-// ---------- INSCRIPTION ----------
+// ----------------------
+// Liste des métiers
+// ----------------------
+
+const metiers = [
+{
+key: "mecanicien",
+title: "Mécanicien auto",
+img: "images/mecanicien.png",
+tags: ["mécanique","moteur","embrayage"]
+},
+
+{
+key: "electricien",
+title: "Électricien auto",
+img: "images/electricien.png",
+tags: ["batterie","alternateur","démarreur"]
+},
+
+{
+key: "climatisation",
+title: "Climatisation auto",
+img: "images/climatisation.png",
+tags: ["clim","gaz","froid"]
+},
+
+{
+key: "vente",
+title: "Vente de pièces",
+img: "images/pieces-auto.png",
+tags: ["pièces","accessoires"]
+},
+
+{
+key: "freinage",
+title: "Freinage",
+img: "images/freinage.png",
+tags: ["plaquettes","disques"]
+},
+
+{
+key: "suspension",
+title: "Suspension",
+img: "images/suspension.png",
+tags: ["amortisseur","train"]
+},
+
+{
+key: "diagnostic",
+title: "Diagnostic auto",
+img: "images/diagnostic.png",
+tags: ["scanner","valise"]
+},
+
+{
+key: "injection",
+title: "Injection",
+img: "images/injection.png",
+tags: ["injecteur","pompe"]
+},
+
+{
+key: "carrosserie",
+title: "Carrosserie",
+img: "images/carrosserie.png",
+tags: ["tôle","redressage"]
+},
+
+{
+key: "peinture",
+title: "Peinture",
+img: "images/peinture.png",
+tags: ["vernis","couleur"]
+}
+];
+
+// ----------------------
+// Affichage des métiers
+// ----------------------
+
+const grid = document.getElementById("grid");
+
+function creerCarte(metier){
+
+const carte = document.createElement("div");
+
+carte.className="card";
+
+carte.innerHTML=`
+
+<img src="${metier.img}" alt="${metier.title}">
+
+<h3>${metier.title}</h3>
+
+`;
+
+return carte;
+
+}// ==============================
+// Affichage des métiers
+// ==============================
+
+function afficherMetiers(liste) {
+
+    grid.innerHTML = "";
+
+    liste.forEach(metier => {
+
+        grid.appendChild(creerCarte(metier));
+
+    });
+
+}
+
+afficherMetiers(metiers);
+
+// ==============================
+// Barre de recherche
+// ==============================
+
+const searchInput = document.getElementById("searchInput");
+
+searchInput.addEventListener("input", function () {
+
+    const recherche = this.value.toLowerCase();
+
+    const resultat = metiers.filter(metier => {
+
+        return (
+
+            metier.title.toLowerCase().includes(recherche)
+
+            ||
+
+            metier.tags.join(" ").toLowerCase().includes(recherche)
+
+        );
+
+    });
+
+    afficherMetiers(resultat);
+
+});
+
+// ==============================
+// Fenêtre d'inscription
+// ==============================
 
 const btnInscription = document.getElementById("btnInscription");
 const zoneAuth = document.getElementById("zoneAuth");
 
-if (btnInscription && zoneAuth) {
-    btnInscription.addEventListener("click", () => {
-        zoneAuth.style.display = "block";
-        document.getElementById("zoneConnexion").style.display = "none";
-    });
-}
+btnInscription.addEventListener("click", function () {
 
-// ---------- CONNEXION ----------
+    zoneAuth.style.display = "block";
+
+});
+
+// ==============================
+// Fenêtre de connexion
+// ==============================
 
 const btnConnexion = document.getElementById("btnConnexion");
 const zoneConnexion = document.getElementById("zoneConnexion");
 
-if (btnConnexion && zoneConnexion) {
-    btnConnexion.addEventListener("click", () => {
-        zoneConnexion.style.display = "block";
-        zoneAuth.style.display = "none";
-    });
-}
+btnConnexion.addEventListener("click", function () {
 
-// ---------- CREATION COMPTE ----------
+    zoneConnexion.style.display = "block";
 
-const btnCreerCompte = document.getElementById("btnCreerCompte");
+});
 
-if (btnCreerCompte) {
-
-    btnCreerCompte.addEventListener("click", () => {
-
-        const nom = document.getElementById("nom").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const motdepasse = document.getElementById("motdepasse").value.trim();
-        const typeCompte = document.getElementById("typeCompte").value;
-
-        if (!nom || !email || !motdepasse) {
-            alert("Veuillez remplir tous les champs.");
-            return;
-        }
-
-        alert("Le formulaire d'inscription est prêt.");
-    });
-
-}
-
-// ---------- CONNEXION ----------
-
-const btnConnexionCompte = document.getElementById("btnConnexionCompte");
-
-if (btnConnexionCompte) {
-
-    btnConnexionCompte.addEventListener("click", () => {
-
-        const email = document.getElementById("emailConnexion").value.trim();
-        const motdepasse = document.getElementById("motdepasseConnexion").value.trim();
-
-        if (!email || !motdepasse) {
-            alert("Veuillez remplir tous les champs.");
-            return;
-        }
-
-        alert("Le formulaire de connexion est prêt.");
-
-    });
-
-}
+console.log("Interface chargée avec succès !");
