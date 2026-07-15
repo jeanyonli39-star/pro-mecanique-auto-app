@@ -86,7 +86,6 @@ tags: ["vernis","couleur"]
 // ----------------------
 
 const grid = document.getElementById("grid");
-
 function creerCarte(metier){
 
 const carte = document.createElement("div");
@@ -94,18 +93,12 @@ const carte = document.createElement("div");
 carte.className="card";
 
 carte.innerHTML=`
+
 <img src="${metier.img}" alt="${metier.title}">
+
 <h3>${metier.title}</h3>
+
 `;
-
-carte.addEventListener("click", function(){
-
-alert(
-metier.title +
-"\n\nAucun artisan n'est encore inscrit dans cette catégorie.\n\nCette fonctionnalité sera disponible dans la prochaine version."
-);
-
-});
 
 return carte;
 
