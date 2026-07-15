@@ -1,7 +1,7 @@
-/* ==============================
-   PRO MECANIQUE AUTO - STYLE V2.0
+/* =================================
+   PRO MECANIQUE AUTO - CSS V2.0
    PARTIE 1
-   ============================== */
+   ================================= */
 
 *{
     margin:0;
@@ -18,125 +18,141 @@ body{
 
 /* ===== HEADER ===== */
 
-header{
+.site-header{
     background:#003366;
     color:white;
     padding:15px;
-    text-align:center;
 }
 
-.logo{
-    width:120px;
-    height:120px;
+
+.header-inner{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+}
+
+
+#site-logo{
+    width:90px;
+    height:90px;
     object-fit:contain;
-    margin:auto;
-    display:block;
 }
 
-header h1{
+
+.header-inner h1{
     font-size:24px;
-    margin-top:10px;
 }
 
-header p{
-    font-size:14px;
+
+.header-inner p{
     margin-top:5px;
-}
-
-
-/* ===== CONTENEUR PRINCIPAL ===== */
-
-.container{
-    width:95%;
-    max-width:900px;
-    margin:20px auto;
+    font-size:14px;
 }
 
 
 /* ===== BARRE DE RECHERCHE ===== */
 
-.search-box{
-    background:white;
-    padding:15px;
-    border-radius:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,.15);
-    margin-bottom:20px;
+.search-bar{
+    margin:20px auto;
+    max-width:700px;
 }
 
-.search-box input{
+
+.search-bar input{
     width:100%;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:8px;
+    padding:14px;
+    border-radius:10px;
+    border:none;
     font-size:16px;
-    outline:none;
 }
 
 
-/* ===== BOUTONS ===== */
+/* ===== BOUTONS HEADER ===== */
 
-button{
+.header-buttons{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+}
+
+
+button,
+.btn{
     background:#ff6600;
     color:white;
     border:none;
     padding:12px 18px;
     border-radius:8px;
+    text-decoration:none;
     cursor:pointer;
-    font-size:16px;
-}
-
-button:hover{
-    opacity:.9;
+    font-size:15px;
 }
 
 
-/* ===== ESPACE CONNEXION INSCRIPTION ===== */
+button:hover,
+.btn:hover{
+    opacity:0.9;
+}
 
-.auth-box{
+
+/* ===== CONNEXION / INSCRIPTION ===== */
+
+#zoneAuth,
+#zoneConnexion{
     background:white;
+    color:#222;
+    margin:20px auto;
     padding:20px;
     border-radius:12px;
-    box-shadow:0 2px 8px rgba(0,0,0,.15);
-    margin-bottom:20px;
+    max-width:400px;
 }
 
-.auth-box input{
+
+#zoneAuth input,
+#zoneConnexion input,
+#typeCompte{
     width:100%;
     padding:12px;
-    margin-bottom:10px;
+    margin:8px 0;
     border:1px solid #ccc;
     border-radius:8px;
 }
 
 
-/* ===== TITRES DES SECTIONS ===== */
+/* ===== CONTENU PRINCIPAL ===== */
 
-.section-title{
+.container{
+    width:95%;
+    max-width:1000px;
+    margin:20px auto;
+}
+
+
+section h2{
     color:#003366;
-    font-size:22px;
-    margin:20px 0;
-}/* ==============================
-   PRO MECANIQUE AUTO - STYLE V2.0
+    margin-bottom:15px;
+}/* =================================
+   PRO MECANIQUE AUTO - CSS V2.0
    PARTIE 2
-   ============================== */
+   ================================= */
 
 
-/* ===== LISTE DES METIERS ===== */
+/* ===== METIERS ===== */
 
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
     gap:15px;
 }
 
 
 .card{
-    background:#fff;
+    background:white;
     border-radius:12px;
     padding:15px;
     text-align:center;
-    box-shadow:0 2px 8px rgba(0,0,0,.15);
-    overflow:hidden;
+    box-shadow:0 3px 10px rgba(0,0,0,0.15);
 }
 
 
@@ -144,33 +160,57 @@ button:hover{
     width:90px;
     height:90px;
     object-fit:contain;
-    display:block;
-    margin:0 auto 10px;
+    margin-bottom:10px;
 }
 
 
 .card h3{
-    font-size:18px;
-    margin:0;
     color:#003366;
+    font-size:18px;
 }
 
 
 /* ===== VENTE DE PIECES ===== */
 
-.parts-box{
-    background:white;
-    border-radius:12px;
-    padding:20px;
-    margin-top:20px;
-    box-shadow:0 2px 8px rgba(0,0,0,.15);
+#venteSection{
+    margin-top:30px;
 }
 
-.parts-box img{
-    width:100%;
-    max-height:250px;
-    object-fit:cover;
-    border-radius:10px;
+
+.vente-box{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.15);
+}
+
+
+.vente-actions{
+    margin-top:15px;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+}
+
+
+/* ===== WHATSAPP ===== */
+
+.whatsapp{
+    background:#25D366;
+    color:white;
+}
+
+
+.whatsapp:hover{
+    background:#1ebe5d;
+}
+
+
+/* ===== LIENS CONTACT ===== */
+
+.contact-btn{
+    background:#003366;
+    color:white;
 }
 
 
@@ -182,42 +222,60 @@ footer{
     text-align:center;
     padding:15px;
     margin-top:30px;
-    font-size:14px;
 }
 
 
-/* ===== VERSION MOBILE ===== */
+/* ===== TELEPHONE ===== */
 
 @media(max-width:600px){
 
-    header h1{
+    .header-inner{
+        flex-direction:column;
+        text-align:center;
+    }
+
+
+    #site-logo{
+        width:80px;
+        height:80px;
+    }
+
+
+    .header-inner h1{
         font-size:20px;
     }
 
-    .logo{
-        width:90px;
-        height:90px;
+
+    .header-buttons{
+        flex-direction:column;
     }
+
+
+    button,
+    .btn{
+        width:100%;
+        text-align:center;
+    }
+
 
     .grid{
         grid-template-columns:repeat(2,1fr);
         gap:10px;
     }
 
+
     .card{
         padding:10px;
     }
+
 
     .card img{
         width:70px;
         height:70px;
     }
 
+
     .card h3{
         font-size:15px;
     }
-
-    button{
-        width:100%;
-    }
-  }
+   }
