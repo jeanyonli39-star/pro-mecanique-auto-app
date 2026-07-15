@@ -1,28 +1,223 @@
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:15px;
+/* ==============================
+   PRO MECANIQUE AUTO - STYLE V2.0
+   PARTIE 1
+   ============================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
 }
+
+body{
+    background:#f4f6f8;
+    color:#222;
+}
+
+
+/* ===== HEADER ===== */
+
+header{
+    background:#003366;
+    color:white;
+    padding:15px;
+    text-align:center;
+}
+
+.logo{
+    width:120px;
+    height:120px;
+    object-fit:contain;
+    margin:auto;
+    display:block;
+}
+
+header h1{
+    font-size:24px;
+    margin-top:10px;
+}
+
+header p{
+    font-size:14px;
+    margin-top:5px;
+}
+
+
+/* ===== CONTENEUR PRINCIPAL ===== */
+
+.container{
+    width:95%;
+    max-width:900px;
+    margin:20px auto;
+}
+
+
+/* ===== BARRE DE RECHERCHE ===== */
+
+.search-box{
+    background:white;
+    padding:15px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+    margin-bottom:20px;
+}
+
+.search-box input{
+    width:100%;
+    padding:12px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+    outline:none;
+}
+
+
+/* ===== BOUTONS ===== */
+
+button{
+    background:#ff6600;
+    color:white;
+    border:none;
+    padding:12px 18px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+
+/* ===== ESPACE CONNEXION INSCRIPTION ===== */
+
+.auth-box{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+    margin-bottom:20px;
+}
+
+.auth-box input{
+    width:100%;
+    padding:12px;
+    margin-bottom:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+
+/* ===== TITRES DES SECTIONS ===== */
+
+.section-title{
+    color:#003366;
+    font-size:22px;
+    margin:20px 0;
+}/* ==============================
+   PRO MECANIQUE AUTO - STYLE V2.0
+   PARTIE 2
+   ============================== */
+
+
+/* ===== LISTE DES METIERS ===== */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:15px;
+}
+
 
 .card{
-background:#fff;
-border-radius:12px;
-padding:15px;
-text-align:center;
-box-shadow:0 2px 8px rgba(0,0,0,.15);
-overflow:hidden;
+    background:#fff;
+    border-radius:12px;
+    padding:15px;
+    text-align:center;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+    overflow:hidden;
 }
+
 
 .card img{
-width:90px;
-height:90px;
-object-fit:contain;
-display:block;
-margin:0 auto 10px;
+    width:90px;
+    height:90px;
+    object-fit:contain;
+    display:block;
+    margin:0 auto 10px;
 }
 
+
 .card h3{
-font-size:18px;
-margin:0;
-color:#003366;
+    font-size:18px;
+    margin:0;
+    color:#003366;
 }
+
+
+/* ===== VENTE DE PIECES ===== */
+
+.parts-box{
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    margin-top:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,.15);
+}
+
+.parts-box img{
+    width:100%;
+    max-height:250px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+
+/* ===== FOOTER ===== */
+
+footer{
+    background:#003366;
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:30px;
+    font-size:14px;
+}
+
+
+/* ===== VERSION MOBILE ===== */
+
+@media(max-width:600px){
+
+    header h1{
+        font-size:20px;
+    }
+
+    .logo{
+        width:90px;
+        height:90px;
+    }
+
+    .grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:10px;
+    }
+
+    .card{
+        padding:10px;
+    }
+
+    .card img{
+        width:70px;
+        height:70px;
+    }
+
+    .card h3{
+        font-size:15px;
+    }
+
+    button{
+        width:100%;
+    }
+  }
