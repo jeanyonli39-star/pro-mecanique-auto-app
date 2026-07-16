@@ -112,7 +112,17 @@ function afficherMetiers(liste) {
 
     liste.forEach(metier => {
 
-        grid.appendChild(creerCarte(metier));
+        const carte = creerCarte(metier);
+
+        carte.addEventListener("click", function () {
+
+            const url = "artisans.html?metier=" + encodeURIComponent(metier.title);
+
+            window.location.href = url;
+
+        });
+
+        grid.appendChild(carte);
 
     });
 
