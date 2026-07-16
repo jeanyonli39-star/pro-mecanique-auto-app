@@ -99,11 +99,9 @@ carte.innerHTML=`
 <h3>${metier.title}</h3>
 
 `;
-
 return carte;
 
 }
-
 }// ==============================
 // Affichage des métiers
 // ==============================
