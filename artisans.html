@@ -1,1 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Artisans - Pro Mécanique Auto</title>
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="header-inner">
+
+<img src="images/logo.png" id="site-logo" alt="Logo">
+
+<div>
+<h1>PRO MÉCANIQUE AUTO</h1>
+<p>Liste des artisans</p>
+</div>
+
+</div>
+
+</header>
+
+<main class="container">
+
+<h2 id="titreMetier">Artisans</h2>
+
+<div class="vente-box">
+
+<p id="message">
+Aucun artisan inscrit dans cette catégorie pour le moment.
+</p>
+
+</div>
+
+<br>
+
+<a href="index.html" class="btn">
+⬅ Retour à l'accueil
+</a>
+
+</main>
+
+<script>
+
+const params = new URLSearchParams(window.location.search);
+
+const metier = params.get("metier");
+
+if(metier){
+
+document.getElementById("titreMetier").textContent = metier;
+
+}
+
+</script>
+
+</body>
+</html>
