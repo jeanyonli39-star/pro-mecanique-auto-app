@@ -23,8 +23,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// Les rendre disponibles dans toute l'application
-window.auth = auth;
-window.db = db;
+// Export des services Firebase
+export { auth, db };
 
 console.log("✅ Firebase initialisé avec succès !");
