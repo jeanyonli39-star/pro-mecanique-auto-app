@@ -142,20 +142,13 @@ searchInput.addEventListener("input", function () {
 
     const resultat = metiers.filter(metier => {
 
-        return (
-
-            metier.title.toLowerCase().includes(recherche)
-return (
+    return (
 
     metier.title.toLowerCase().includes(recherche)
 
     ||
 
     metier.tags.join(" ").toLowerCase().includes(recherche)
-
-    ||
-
-    metier.title.toLowerCase().startsWith(recherche)
 
 );
 
