@@ -1,1 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
 
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Profil Artisan - Pro Mécanique Auto</title>
+
+<link rel="stylesheet" href="styles.css">
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+<div class="header-inner">
+
+<img src="images/logo.png" id="site-logo" alt="Logo">
+
+<div>
+
+<h1>PRO MÉCANIQUE AUTO</h1>
+
+<p>Profil de l'artisan</p>
+
+</div>
+
+</div>
+
+</header>
+
+<main class="container">
+
+<div class="vente-box">
+
+<h2 id="nomArtisan">Chargement...</h2>
+
+<p><strong>Métier :</strong> <span id="metierArtisan"></span></p>
+
+<p><strong>Ville :</strong> <span id="villeArtisan"></span></p>
+
+<p><strong>Téléphone :</strong> <span id="telephoneArtisan"></span></p>
+
+<p><strong>Description :</strong></p>
+
+<p id="descriptionArtisan"></p>
+
+</div>
+
+<br>
+
+<a href="artisans.html" class="btn">
+
+⬅ Retour aux artisans
+
+</a>
+
+</main>
+
+<script type="module" src="profil.js"></script>
+
+</body>
+
+</html>
