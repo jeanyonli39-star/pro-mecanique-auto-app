@@ -48,15 +48,22 @@ async function chargerArtisans() {
 
     const artisan = doc.data();
 
-    message.innerHTML += `
-      <div class="vente-box" style="margin-bottom:20px;">
-        <h3>${artisan.nom}</h3>
-        <p><strong>Métier :</strong> ${artisan.metier}</p>
-        <p><strong>Ville :</strong> ${artisan.ville}</p>
-        <p><strong>Téléphone :</strong> ${artisan.telephone}</p>
-        <p><strong>Description :</strong> ${artisan.description}</p>
-      </div>
-    `;
+  message.innerHTML += `
+  <div class="vente-box" style="margin-bottom:20px; cursor:pointer;"
+       onclick="window.location.href='profil.html?uid=${doc.id}'">
+
+    <h3>${artisan.nom}</h3>
+
+    <p><strong>Métier :</strong> ${artisan.metier}</p>
+
+    <p><strong>Ville :</strong> ${artisan.ville}</p>
+
+    <p><strong>Téléphone :</strong> ${artisan.telephone}</p>
+
+    <p><strong>Description :</strong> ${artisan.description}</p>
+
+  </div>
+`;
 
   });
 
