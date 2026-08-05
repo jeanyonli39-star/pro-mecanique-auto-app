@@ -1,0 +1,21 @@
+// ===============================
+// PROFIL ARTISAN
+// Partie 1
+// ===============================
+
+import { db } from "./firebase.js";
+
+import {
+    doc,
+    getDoc
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
+
+const params = new URLSearchParams(window.location.search);
+
+const uid = params.get("uid");
+
+const nomArtisan = document.getElementById("nomArtisan");
+const metierArtisan = document.getElementById("metierArtisan");
+const villeArtisan = document.getElementById("villeArtisan");
+const telephoneArtisan = document.getElementById("telephoneArtisan");
+const descriptionArtisan = document.getElementById("descriptionArtisan");
