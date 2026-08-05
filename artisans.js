@@ -63,3 +63,27 @@ async function chargerArtisans() {
 }
 
 chargerArtisans();
+rechercheVille.addEventListener("input", function () {
+
+    const recherche = this.value.toLowerCase();
+
+    const cartes = document.querySelectorAll(".vente-box");
+
+    cartes.forEach(carte => {
+
+        const texte = carte.textContent.toLowerCase();
+
+        if (texte.includes(recherche)) {
+
+            carte.style.display = "block";
+
+        } else {
+
+            carte.style.display = "none";
+
+        }
+
+    });
+
+});
+
