@@ -51,6 +51,10 @@ async function chargerProfil() {
     villeArtisan.textContent = artisan.ville;
     telephoneArtisan.textContent = artisan.telephone;
     descriptionArtisan.textContent = artisan.description;
+    const numero = artisan.telephone.replace(/\s+/g, "");
+
+btnWhatsApp.href =
+`https://wa.me/226${numero}?text=Bonjour%20${encodeURIComponent(artisan.nom)},%20je%20vous%20contacte%20depuis%20Pro%20Mécanique%20Auto.`;
 
 }
 
