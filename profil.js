@@ -60,4 +60,30 @@ btnWhatsApp.href =
 
 }
 
-chargerProfil();
+chargerProfil();// ===============================
+// Choix d'une photo
+// ===============================
+
+btnChangerPhoto.addEventListener("click", function () {
+
+    photoInput.click();
+
+});
+
+photoInput.addEventListener("change", function () {
+
+    const fichier = this.files[0];
+
+    if (!fichier) return;
+
+    const lecteur = new FileReader();
+
+    lecteur.onload = function (e) {
+
+        photoArtisan.src = e.target.result;
+
+    };
+
+    lecteur.readAsDataURL(fichier);
+
+});
