@@ -19,7 +19,9 @@ const metierArtisan = document.getElementById("metierArtisan");
 const villeArtisan = document.getElementById("villeArtisan");
 const telephoneArtisan = document.getElementById("telephoneArtisan");
 const descriptionArtisan = document.getElementById("descriptionArtisan");
-const btnWhatsApp = document.getElementById("btnWhatsApp");
+const btnWhatsApp = document.getElementById("btnWhatsApp");const photoArtisan = document.getElementById("photoArtisan");
+const photoInput = document.getElementById("photoInput");
+const btnChangerPhoto = document.getElementById("btnChangerPhoto");
 
 // ===============================
 // Partie 2 : Chargement du profil
