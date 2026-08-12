@@ -75,20 +75,35 @@ btnChangerPhoto.addEventListener("click", function () {
 
 });
 
-photoInput.addEventListener("change", function () {
+photoInput.addEventListener("change", async function () {
 
     const fichier = this.files[0];
 
     if (!fichier) return;
 
-    const lecteur = new FileReader();
+    try {
 
-    lecteur.onload = function (e) {
+        photoArtisan.src = URL.createObjectURL(fichier);
 
-        photoArtisan.src = e.target.result;
+        const cheminPhoto = ref(
+            storage,
+            "photos-profils/" + Date.now() + "_" + fichier.name
+        );
 
-    };
+        await uploadBytes(cheminPhoto, fichier);
 
-    lecteur.readAsDataURL(fichier);
+        const urlPhoto = await getDownloadURL(cheminPhoto);
+
+        photoArtisan.src = urlPhoto;
+
+        alert("✅ Photo enregistrée avec succès !");
+
+    } catch (erreur) {
+
+        console.error(erreur);
+
+        alert("❌ Impossible d'enregistrer la photo.");
+
+    }
 
 });
