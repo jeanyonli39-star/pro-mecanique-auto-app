@@ -3,7 +3,7 @@
 // Partie 1
 // ===============================
 
-import { db } from "./firebase.js";
+import { db, storage } from "./firebase.js";
 
 import {
     doc,
