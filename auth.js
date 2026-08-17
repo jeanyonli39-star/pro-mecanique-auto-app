@@ -53,17 +53,21 @@ btnCreerCompte.addEventListener("click", async () => {
 
         await setDoc(doc(db, "artisans", uid), {
 
-            nom: nom.value,
-            email: email.value,
-            telephone: telephone.value,
-            ville: ville.value,
-            metier: metier.value,
-            description: description.value,
-            typeCompte: typeCompte.value,
-            uid: uid,
-            dateCreation: new Date()
+    nom: nom.value,
+    email: email.value,
+    telephone: telephone.value,
 
-        });
+    telephoneWhatsApp: telephoneWhatsApp.value,
+    telephoneSecretaire: telephoneSecretaire.value,
+
+    ville: ville.value,
+    metier: metier.value,
+    description: description.value,
+    typeCompte: typeCompte.value,
+    uid: uid,
+    dateCreation: new Date()
+
+});
 
 
         alert("✅ Inscription réussie !");
