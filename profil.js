@@ -30,7 +30,11 @@ const uid = params.get("uid");
 const nomArtisan = document.getElementById("nomArtisan");
 const metierArtisan = document.getElementById("metierArtisan");
 const villeArtisan = document.getElementById("villeArtisan");
-const telephoneArtisan = document.getElementById("telephoneArtisan");
+const telephoneArtisan = document.getElementById("telephoneArtisan")
+const telephoneWhatsApp = document.getElementById("telephoneWhatsApp");
+const telephoneSecretaire = document.getElementById("telephoneSecretaire");
+const zoneWhatsApp = document.getElementById("zoneWhatsApp");
+const zoneSecretaire = document.getElementById("zoneSecretaire");
 const descriptionArtisan = document.getElementById("descriptionArtisan");
 
 const btnWhatsApp = document.getElementById("btnWhatsApp");
@@ -71,6 +75,13 @@ async function chargerProfil() {
     metierArtisan.textContent = artisan.metier || "";
     villeArtisan.textContent = artisan.ville || "";
     telephoneArtisan.textContent = artisan.telephone || "";
+    if (!artisan.telephoneWhatsApp) {
+  zoneWhatsApp.style.display = "none";
+}
+
+if (!artisan.telephoneSecretaire) {
+  zoneSecretaire.style.display = "none";
+}
     descriptionArtisan.textContent = artisan.description || "";
 
     // ===============================
