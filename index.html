@@ -156,6 +156,31 @@ id="description"
 placeholder="Décrivez vos services (facultatif)">
 </textarea>
 </div>
+ <script>
+const typeCompteSelect = document.getElementById("typeCompte");
+const champsArtisan = document.getElementById("champsArtisan");
+
+function afficherChampsSelonCompte() {
+
+  if (typeCompteSelect.value === "artisan") {
+
+    champsArtisan.style.display = "block";
+
+  } else {
+
+    champsArtisan.style.display = "none";
+
+  }
+
+}
+
+typeCompteSelect.addEventListener(
+  "change",
+  afficherChampsSelonCompte
+);
+
+afficherChampsSelonCompte();
+</script> 
 
 <button id="btnCreerCompte">
 Créer mon compte
