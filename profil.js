@@ -16,12 +16,14 @@ import {
   updateDoc
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
+
 // ===============================
 // Récupération de l'artisan
 // ===============================
 
 const params = new URLSearchParams(window.location.search);
 const uid = params.get("uid");
+
 
 // ===============================
 // Éléments de la page
@@ -30,18 +32,94 @@ const uid = params.get("uid");
 const nomArtisan = document.getElementById("nomArtisan");
 const metierArtisan = document.getElementById("metierArtisan");
 const villeArtisan = document.getElementById("villeArtisan");
-const telephoneArtisan = document.getElementById("telephoneArtisan")
-const telephoneWhatsApp = document.getElementById("telephoneWhatsApp");
-const telephoneSecretaire = document.getElementById("telephoneSecretaire");
-const zoneWhatsApp = document.getElementById("zoneWhatsApp");
-const zoneSecretaire = document.getElementById("zoneSecretaire");
-const descriptionArtisan = document.getElementById("descriptionArtisan");
 
-const btnWhatsApp = document.getElementById("btnWhatsApp");
+const telephoneArtisan =
+  document.getElementById("telephoneArtisan");
 
-const photoArtisan = document.getElementById("photoArtisan");
-const photoInput = document.getElementById("photoInput");
-const btnChangerPhoto = document.getElementById("btnChangerPhoto");
+const telephoneWhatsApp =
+  document.getElementById("telephoneWhatsApp");
+
+const telephoneSecretaire =
+  document.getElementById("telephoneSecretaire");
+
+const zoneWhatsApp =
+  document.getElementById("zoneWhatsApp");
+
+const zoneSecretaire =
+  document.getElementById("zoneSecretaire");
+
+const descriptionArtisan =
+  document.getElementById("descriptionArtisan");
+
+const btnWhatsApp =
+  document.getElementById("btnWhatsApp");
+
+const photoArtisan =
+  document.getElementById("photoArtisan");
+
+const photoInput =
+  document.getElementById("photoInput");
+
+const btnChangerPhoto =
+  document.getElementById("btnChangerPhoto");
+
+
+// ===============================
+// Fonction pour préparer un numéro
+// ===============================
+
+function nettoyerNumero(numero) {
+
+  if (!numero) return "";
+
+  let resultat = numero
+    .toString()
+    .replace(/\s+/g, "")
+    .replace(/-/g, "")
+    .replace(/\(/g, "")
+    .replace(/\)/g, "");
+
+  // Si le numéro commence déjà par +226
+  if (resultat.startsWith("+226")) {
+    resultat = resultat.substring(4);
+  }
+
+  // Si le numéro commence par 226
+  else if (resultat.startsWith("226")) {
+    resultat = resultat.substring(3);
+  }
+
+  // Si le numéro commence par 0
+  resultat = resultat.replace(/^0+/, "");
+
+  return resultat;
+}
+
+
+// ===============================
+// Création d'un bouton Appeler
+// ===============================
+
+function creerBoutonAppel(numero, texte) {
+
+  if (!numero) return null;
+
+  const bouton = document.createElement("a");
+
+  bouton.href = "tel:+226" + nettoyerNumero(numero);
+
+  bouton.textContent = texte;
+
+  bouton.className = "btn call";
+
+  bouton.style.display = "inline-block";
+  bouton.style.marginTop = "8px";
+  bouton.style.marginRight = "8px";
+  bouton.style.textDecoration = "none";
+
+  return bouton;
+}
+
 
 // ===============================
 // Chargement du profil
@@ -51,58 +129,160 @@ async function chargerProfil() {
 
   if (!uid) {
 
-    nomArtisan.textContent = "Artisan introuvable";
-    return;
+    nomArtisan.textContent =
+      "Artisan introuvable";
 
+    return;
   }
 
   try {
 
-    const docRef = doc(db, "artisans", uid);
-    const docSnap = await getDoc(docRef);
+    const docRef =
+      doc(db, "artisans", uid);
+
+    const docSnap =
+      await getDoc(docRef);
+
 
     if (!docSnap.exists()) {
 
-      nomArtisan.textContent = "Artisan introuvable";
+      nomArtisan.textContent =
+        "Artisan introuvable";
+
       return;
+    }
+
+
+    const artisan =
+      docSnap.data();
+
+
+    // ===============================
+    // Informations générales
+    // ===============================
+
+    nomArtisan.textContent =
+      artisan.nom || "";
+
+    metierArtisan.textContent =
+      artisan.metier || "";
+
+    villeArtisan.textContent =
+      artisan.ville || "";
+
+    telephoneArtisan.textContent =
+      artisan.telephone || "";
+
+    telephoneWhatsApp.textContent =
+      artisan.telephoneWhatsApp || "";
+
+    telephoneSecretaire.textContent =
+      artisan.telephoneSecretaire || "";
+
+    descriptionArtisan.textContent =
+      artisan.description || "";
+
+
+    // ===============================
+    // Numéro principal
+    // ===============================
+
+    const ancienBoutonPrincipal =
+      document.getElementById("btnAppelPrincipal");
+
+    if (ancienBoutonPrincipal) {
+      ancienBoutonPrincipal.remove();
+    }
+
+    if (artisan.telephone) {
+
+      const boutonPrincipal =
+        creerBoutonAppel(
+          artisan.telephone,
+          "📞 Appeler"
+        );
+
+      if (boutonPrincipal) {
+
+        boutonPrincipal.id =
+          "btnAppelPrincipal";
+
+        telephoneArtisan.parentElement
+          .appendChild(boutonPrincipal);
+      }
 
     }
 
-    const artisan = docSnap.data();
 
-    // Informations de l'artisan
-    nomArtisan.textContent = artisan.nom || "";
-    metierArtisan.textContent = artisan.metier || "";
-    villeArtisan.textContent = artisan.ville || "";
-    telephoneArtisan.textContent = artisan.telephone || "";
+    // ===============================
+    // WhatsApp
+    // ===============================
 
-telephoneWhatsApp.textContent = artisan.telephoneWhatsApp || "";
-telephoneSecretaire.textContent = artisan.telephoneSecretaire || "";
+    if (artisan.telephoneWhatsApp) {
 
-descriptionArtisan.textContent = artisan.description || "";
+      const numeroWhatsApp =
+        nettoyerNumero(
+          artisan.telephoneWhatsApp
+        );
 
-// ===============================
-// Numéro WhatsApp
-// ===============================
+      btnWhatsApp.href =
+        `https://wa.me/226${numeroWhatsApp}?text=Bonjour%20${encodeURIComponent(artisan.nom || "")}%2C%20je%20vous%20contacte%20depuis%20Pro%20Mécanique%20Auto.`;
 
-if (artisan.telephoneWhatsApp) {
+      btnWhatsApp.style.display =
+        "inline-block";
 
-    const numeroWhatsApp = artisan.telephoneWhatsApp
-        .replace(/\s+/g, "")
-        .replace(/^0+/, "");
+      zoneWhatsApp.style.display =
+        "block";
 
-    btnWhatsApp.href =
-    `https://wa.me/226${numeroWhatsApp}?text=Bonjour%20${encodeURIComponent(artisan.nom)},%20je%20vous contacte depuis Pro Mécanique Auto.`;
+    } else {
 
-    zoneWhatsApp.style.display = "block";
-
-} else {
-
-    zoneWhatsApp.style.display = "none";
-
-}
-
+      zoneWhatsApp.style.display =
+        "none";
     }
+
+
+    // ===============================
+    // Numéro du secrétaire
+    // ===============================
+
+    const ancienBoutonSecretaire =
+      document.getElementById(
+        "btnAppelSecretaire"
+      );
+
+    if (ancienBoutonSecretaire) {
+      ancienBoutonSecretaire.remove();
+    }
+
+
+    if (artisan.telephoneSecretaire) {
+
+      zoneSecretaire.style.display =
+        "block";
+
+
+      const boutonSecretaire =
+        creerBoutonAppel(
+          artisan.telephoneSecretaire,
+          "📞 Appeler le secrétaire"
+        );
+
+
+      if (boutonSecretaire) {
+
+        boutonSecretaire.id =
+          "btnAppelSecretaire";
+
+        telephoneSecretaire.parentElement
+          .appendChild(boutonSecretaire);
+      }
+
+    } else {
+
+      zoneSecretaire.style.display =
+        "none";
+    }
+
 
     // ===============================
     // Photo déjà enregistrée
@@ -110,35 +290,51 @@ if (artisan.telephoneWhatsApp) {
 
     if (artisan.photoURL) {
 
-      photoArtisan.src = artisan.photoURL;
+      photoArtisan.src =
+        artisan.photoURL;
 
     } else {
 
-      photoArtisan.src = "images/profil.png";
-
+      photoArtisan.src =
+        "images/profil.png";
     }
+
 
   } catch (erreur) {
 
-    console.error("Erreur chargement profil :", erreur);
+    console.error(
+      "Erreur chargement profil :",
+      erreur
+    );
 
-    nomArtisan.textContent = "Erreur de chargement du profil";
-
+    nomArtisan.textContent =
+      "Erreur de chargement du profil";
   }
-
 }
 
+
+// ===============================
 // Lancer le chargement
+// ===============================
+
 chargerProfil();
+
+
 // ===============================
 // Changer la photo
 // ===============================
 
-btnChangerPhoto.addEventListener("click", function () {
+if (btnChangerPhoto && photoInput) {
 
-  photoInput.click();
+  btnChangerPhoto.addEventListener(
+    "click",
+    function () {
 
-});
+      photoInput.click();
+
+    }
+  );
+}
 
 
 // ===============================
@@ -146,70 +342,98 @@ btnChangerPhoto.addEventListener("click", function () {
 // de la photo
 // ===============================
 
-photoInput.addEventListener("change", async function () {
+if (photoInput) {
 
-  const fichier = this.files[0];
+  photoInput.addEventListener(
+    "change",
+    async function () {
 
-  if (!fichier) return;
+      const fichier =
+        this.files[0];
 
-  try {
+      if (!fichier) return;
 
-    // Affichage immédiat de la photo choisie
-    photoArtisan.src = URL.createObjectURL(fichier);
 
-    // Nom unique pour la photo
-    const nomFichier =
-      Date.now() + "_" + fichier.name;
+      try {
 
-    // Emplacement dans Firebase Storage
-    const cheminPhoto = ref(
-      storage,
-      "photos-profils/" + uid + "/" + nomFichier
-    );
+        // Affichage immédiat
+        photoArtisan.src =
+          URL.createObjectURL(fichier);
 
-    // Envoi de la photo
-    await uploadBytes(
-      cheminPhoto,
-      fichier
-    );
 
-    // Récupération de l'adresse de la photo
-    const urlPhoto =
-      await getDownloadURL(cheminPhoto);
+        // Nom unique
+        const nomFichier =
+          Date.now() +
+          "_" +
+          fichier.name;
 
-    // Affichage de la photo enregistrée
-    photoArtisan.src = urlPhoto;
 
-    // Enregistrement de l'adresse dans Firestore
-    const artisanRef =
-      doc(db, "artisans", uid);
+        // Emplacement Firebase Storage
+        const cheminPhoto =
+          ref(
+            storage,
+            "photos-profils/" +
+            uid +
+            "/" +
+            nomFichier
+          );
 
-    await updateDoc(
-      artisanRef,
-      {
-        photoURL: urlPhoto
+
+        // Envoi de la photo
+        await uploadBytes(
+          cheminPhoto,
+          fichier
+        );
+
+
+        // Récupération de l'URL
+        const urlPhoto =
+          await getDownloadURL(
+            cheminPhoto
+          );
+
+
+        // Affichage de la photo
+        photoArtisan.src =
+          urlPhoto;
+
+
+        // Enregistrement dans Firestore
+        const artisanRef =
+          doc(db, "artisans", uid);
+
+
+        await updateDoc(
+          artisanRef,
+          {
+            photoURL: urlPhoto
+          }
+        );
+
+
+        alert(
+          "✅ Photo de profil enregistrée avec succès !"
+        );
+
+
+      } catch (erreur) {
+
+        console.error(
+          "Erreur lors de l'enregistrement de la photo :",
+          erreur
+        );
+
+
+        // Image par défaut
+        photoArtisan.src =
+          "images/profil.png";
+
+
+        alert(
+          "❌ Impossible d'enregistrer la photo. Le stockage Firebase doit être activé pour utiliser cette fonction."
+        );
       }
-    );
 
-    alert(
-      "✅ Photo de profil enregistrée avec succès !"
-    );
-
-  } catch (erreur) {
-
-    console.error(
-      "Erreur lors de l'enregistrement de la photo :",
-      erreur
-    );
-
-    // Remettre l'image par défaut
-    photoArtisan.src =
-      "images/profil.png";
-
-    alert(
-      "❌ Impossible d'enregistrer la photo. Vérifiez les règles Firebase Storage."
-    );
-
-  }
-
-});
+    }
+  );
+}
