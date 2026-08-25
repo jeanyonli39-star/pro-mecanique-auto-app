@@ -75,25 +75,32 @@ async function chargerProfil() {
     metierArtisan.textContent = artisan.metier || "";
     villeArtisan.textContent = artisan.ville || "";
     telephoneArtisan.textContent = artisan.telephone || "";
-    if (!artisan.telephoneWhatsApp) {
-  zoneWhatsApp.style.display = "none";
+
+telephoneWhatsApp.textContent = artisan.telephoneWhatsApp || "";
+telephoneSecretaire.textContent = artisan.telephoneSecretaire || "";
+
+descriptionArtisan.textContent = artisan.description || "";
+
+// ===============================
+// Numéro WhatsApp
+// ===============================
+
+if (artisan.telephoneWhatsApp) {
+
+    const numeroWhatsApp = artisan.telephoneWhatsApp
+        .replace(/\s+/g, "")
+        .replace(/^0+/, "");
+
+    btnWhatsApp.href =
+    `https://wa.me/226${numeroWhatsApp}?text=Bonjour%20${encodeURIComponent(artisan.nom)},%20je%20vous contacte depuis Pro Mécanique Auto.`;
+
+    zoneWhatsApp.style.display = "block";
+
+} else {
+
+    zoneWhatsApp.style.display = "none";
+
 }
-
-if (!artisan.telephoneSecretaire) {
-  zoneSecretaire.style.display = "none";
-}
-    descriptionArtisan.textContent = artisan.description || "";
-
-    // ===============================
-    // WhatsApp
-    // ===============================
-
-    if (artisan.telephone) {
-
-      const numero = artisan.telephone.replace(/\s+/g, "");
-
-      btnWhatsApp.href =
-        `https://wa.me/226${numero}?text=Bonjour%20${encodeURIComponent(artisan.nom || "")},%20je%20vous%20contacte%20depuis%20Pro%20Mécanique%20Auto.`;
 
     }
 
