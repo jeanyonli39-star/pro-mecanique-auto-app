@@ -15,96 +15,288 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 
-// Récupération des éléments HTML
+// ===============================
+// RECUPERATION DES ELEMENTS HTML
+// ===============================
 
-const btnCreerCompte = document.getElementById("btnCreerCompte");
-const btnConnexionCompte = document.getElementById("btnConnexionCompte");
+const btnCreerCompte =
+    document.getElementById("btnCreerCompte");
 
-
-// Champs inscription
-
-const nom = document.getElementById("nom");
-const email = document.getElementById("email");
-const motdepasse = document.getElementById("motdepasse");
-const telephone = document.getElementById("telephone");
-const ville = document.getElementById("ville");
-const metier = document.getElementById("metier");
-const description = document.getElementById("description");
-const typeCompte = document.getElementById("typeCompte");
+const btnConnexionCompte =
+    document.getElementById("btnConnexionCompte");
 
 
 // ===============================
-// CREATION DE COMPTE ARTISAN
+// FONCTION POUR RECUPERER
+// LA VALEUR D'UN CHAMP
 // ===============================
 
-btnCreerCompte.addEventListener("click", async () => {
+function recupererValeur(id) {
 
-    try {
+    const element =
+        document.getElementById(id);
 
-        const utilisateur = await createUserWithEmailAndPassword(
-            auth,
-            email.value,
-            motdepasse.value
-        );
-
-
-        const uid = utilisateur.user.uid;
-
-
-        await setDoc(doc(db, "artisans", uid), {
-
-    nom: nom.value,
-    email: email.value,
-    telephone: telephone.value,
-
-    telephoneWhatsApp: telephoneWhatsApp.value,
-    telephoneSecretaire: telephoneSecretaire.value,
-
-    ville: ville.value,
-    metier: metier.value,
-    description: description.value,
-    typeCompte: typeCompte.value,
-    uid: uid,
-    dateCreation: new Date()
-
-});
-
-
-        alert("✅ Inscription réussie !");
-
-
-    } catch (erreur) {
-
-        alert("Erreur inscription : " + erreur.message);
-
+    if (!element) {
+        return "";
     }
 
-});
+    return element.value.trim();
 
+}
+
+
+// ===============================
+// CREATION DE COMPTE
+// ===============================
+
+btnCreerCompte.addEventListener(
+    "click",
+    async () => {
+
+        try {
+
+            // ===============================
+            // INFORMATIONS PRINCIPALES
+            // ===============================
+
+            const nom =
+                recupererValeur("nom");
+
+            const email =
+                recupererValeur("email");
+
+            const motdepasse =
+                recupererValeur("motdepasse");
+
+            const typeCompte =
+                recupererValeur("typeCompte");
+
+
+            // ===============================
+            // VERIFICATION
+            // ===============================
+
+            if (!nom || !email || !motdepasse) {
+
+                alert(
+                    "❌ Veuillez remplir le nom, l'adresse e-mail et le mot de passe."
+                );
+
+                return;
+
+            }
+
+
+            // ===============================
+            // CREATION AUTHENTIFICATION
+            // ===============================
+
+            const utilisateur =
+                await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    motdepasse
+                );
+
+
+            const uid =
+                utilisateur.user.uid;
+
+
+            // ===============================
+            // COMPTE CLIENT
+            // ===============================
+
+            if (typeCompte === "client") {
+
+                await setDoc(
+                    doc(db, "clients", uid),
+                    {
+
+                        nom: nom,
+                        email: email,
+
+                        typeCompte: "client",
+
+                        uid: uid,
+
+                        dateCreation:
+                            new Date()
+
+                    }
+                );
+
+
+                alert(
+                    "✅ Compte client créé avec succès !"
+                );
+
+                return;
+
+            }
+
+
+            // ===============================
+            // INFORMATIONS ARTISAN
+            // ===============================
+
+            const telephone =
+                recupererValeur("telephone");
+
+            const telephoneWhatsApp =
+                recupererValeur(
+                    "telephoneWhatsApp"
+                );
+
+            const telephoneSecretaire =
+                recupererValeur(
+                    "telephoneSecretaire"
+                );
+
+            const ville =
+                recupererValeur("ville");
+
+            const metier =
+                recupererValeur("metier");
+
+            const description =
+                recupererValeur(
+                    "description"
+                );
+
+
+            // ===============================
+            // VERIFICATION ARTISAN
+            // ===============================
+
+            if (
+                !telephone ||
+                !ville ||
+                !metier
+            ) {
+
+                alert(
+                    "❌ Veuillez remplir les informations obligatoires de l'artisan."
+                );
+
+                return;
+
+            }
+
+
+            // ===============================
+            // ENREGISTREMENT ARTISAN
+            // ===============================
+
+            await setDoc(
+                doc(db, "artisans", uid),
+                {
+
+                    nom: nom,
+
+                    email: email,
+
+                    telephone: telephone,
+
+                    telephoneWhatsApp:
+                        telephoneWhatsApp,
+
+                    telephoneSecretaire:
+                        telephoneSecretaire,
+
+                    ville: ville,
+
+                    metier: metier,
+
+                    description: description,
+
+                    typeCompte: "artisan",
+
+                    uid: uid,
+
+                    dateCreation:
+                        new Date()
+
+                }
+            );
+
+
+            alert(
+                "✅ Compte artisan créé avec succès !"
+            );
+
+
+        } catch (erreur) {
+
+            console.error(
+                "Erreur inscription :",
+                erreur
+            );
+
+            alert(
+                "Erreur inscription : " +
+                erreur.message
+            );
+
+        }
+
+    }
+);
 
 
 // ===============================
 // CONNEXION
 // ===============================
 
-btnConnexionCompte.addEventListener("click", async () => {
+btnConnexionCompte.addEventListener(
+    "click",
+    async () => {
 
-    try {
+        try {
 
-        await signInWithEmailAndPassword(
-            auth,
-            email.value,
-            motdepasse.value
-        );
+            const email =
+                recupererValeur("email");
 
-
-        alert("✅ Connexion réussie !");
+            const motdepasse =
+                recupererValeur("motdepasse");
 
 
-    } catch (erreur) {
+            if (!email || !motdepasse) {
 
-        alert("Erreur connexion : " + erreur.message);
+                alert(
+                    "❌ Veuillez saisir votre e-mail et votre mot de passe."
+                );
+
+                return;
+
+            }
+
+
+            await signInWithEmailAndPassword(
+                auth,
+                email,
+                motdepasse
+            );
+
+
+            alert(
+                "✅ Connexion réussie !"
+            );
+
+
+        } catch (erreur) {
+
+            console.error(
+                "Erreur connexion :",
+                erreur
+            );
+
+            alert(
+                "Erreur connexion : " +
+                erreur.message
+            );
+
+        }
 
     }
-
-});
+);
