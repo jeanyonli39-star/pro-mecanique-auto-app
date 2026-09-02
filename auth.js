@@ -272,16 +272,58 @@ btnConnexionCompte.addEventListener(
             }
 
 
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                motdepasse
-            );
+        const resultat =
+    await signInWithEmailAndPassword(
+        auth,
+        email,
+        motdepasse
+    );
+
+const uid =
+    resultat.user.uid;
 
 
-            alert(
-                "✅ Connexion réussie !"
-            );
+// Vérifier si c'est un client
+const clientRef =
+    doc(db, "clients", uid);
+
+const clientSnap =
+    await getDoc(clientRef);
+
+if (clientSnap.exists()) {
+
+    alert(
+        "✅ Connexion réussie !"
+    );
+
+    window.location.href = "client.html";
+
+    return;
+}
+
+
+// Sinon, vérifier si c'est un artisan
+const artisanRef =
+    doc(db, "artisans", uid);
+
+const artisanSnap =
+    await getDoc(artisanRef);
+
+if (artisanSnap.exists()) {
+
+    alert(
+        "✅ Connexion réussie !"
+    );
+
+    window.location.href = "profil.html";
+
+    return;
+}
+
+
+alert(
+    "⚠️ Compte connecté, mais profil introuvable."
+);
 
 
         } catch (erreur) {
