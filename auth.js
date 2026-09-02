@@ -254,12 +254,11 @@ btnConnexionCompte.addEventListener(
 
         try {
 
-            const email =
-                recupererValeur("email");
+        const email =
+    recupererValeur("emailConnexion");
 
-            const motdepasse =
-                recupererValeur("motdepasse");
-
+const motdepasse =
+    recupererValeur("motdepasseConnexion");
 
             if (!email || !motdepasse) {
 
