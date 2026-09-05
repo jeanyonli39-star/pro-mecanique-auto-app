@@ -475,3 +475,22 @@ if (btnAfficherMotdepasse && champMotdepasse) {
     );
   });
 }
+const btnAfficherMotdepasseConnexion = document.getElementById("btnAfficherMotdepasseConnexion");
+const champMotdepasseConnexion = document.getElementById("motdepasseConnexion");
+
+if (btnAfficherMotdepasseConnexion && champMotdepasseConnexion) {
+  btnAfficherMotdepasseConnexion.addEventListener("click", () => {
+    const motdepasseVisible = champMotdepasseConnexion.type === "text";
+
+    champMotdepasseConnexion.type = motdepasseVisible ? "password" : "text";
+
+    btnAfficherMotdepasseConnexion.textContent = motdepasseVisible ? "👁️" : "🙈";
+
+    btnAfficherMotdepasseConnexion.setAttribute(
+      "aria-label",
+      motdepasseVisible
+        ? "Afficher le mot de passe"
+        : "Masquer le mot de passe"
+    );
+  });
+}
