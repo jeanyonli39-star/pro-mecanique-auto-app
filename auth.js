@@ -486,7 +486,7 @@ if (btnAfficherMotdepasse && champMotdepasse) {
 
     champMotdepasse.type = motdepasseVisible ? "password" : "text";
 
-    btnAfficherMotdepasse.textContent = motdepasseVisible ? "👁️" : "🙈";
+    btnAfficherMotdepasse.textContent = motdepasseVisible ? "🙈" : "👁️";
 
     btnAfficherMotdepasse.setAttribute(
       "aria-label",
@@ -505,7 +505,7 @@ if (btnAfficherMotdepasseConnexion && champMotdepasseConnexion) {
 
     champMotdepasseConnexion.type = motdepasseVisible ? "password" : "text";
 
-    btnAfficherMotdepasseConnexion.textContent = motdepasseVisible ? "👁️" : "🙈";
+    btnAfficherMotdepasseConnexion.textContent = motdepasseVisible ? "🙈" : "👁️";
 
     btnAfficherMotdepasseConnexion.setAttribute(
       "aria-label",
