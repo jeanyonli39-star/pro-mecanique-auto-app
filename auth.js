@@ -48,9 +48,16 @@ function recupererValeur(id) {
 // FONCTION POUR AFFICHER
 // UN MESSAGE SIMPLE
 // ===============================
-
 function afficherMessage(message) {
+  const modal = document.getElementById("messageModal");
+  const messageTexte = document.getElementById("messageModalTexte");
+
+  if (modal && messageTexte) {
+    messageTexte.textContent = message;
+    modal.style.display = "flex";
+  } else {
     alert(message);
+  }
 }
 
 
