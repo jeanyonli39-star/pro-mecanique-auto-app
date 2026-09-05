@@ -233,9 +233,10 @@ btnCreerCompte.addEventListener(
 
 
                 // Message de réussite
-                afficherMessage(
-                    "✅ Compte client créé avec succès !"
-                );
+               afficherMessage(
+    "✅ Compte client créé avec succès !",
+    "client.html"
+); 
 
                 return;
             }
