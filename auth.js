@@ -311,7 +311,7 @@ btnCreerCompte.addEventListener(
 
 
             // Message de réussite
-            afficherSuccesCreation(
+            afficherMessage(
     "✅ Compte artisan créé avec succès !"
 );
 
