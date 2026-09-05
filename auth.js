@@ -48,6 +48,9 @@ function recupererValeur(id) {
 // FONCTION POUR AFFICHER
 // UN MESSAGE SIMPLE
 // ===============================
+function afficherMessage(message) {
+    alert(message);
+}
 const btnFermerMessage = document.getElementById("btnFermerMessage");
 
 if (btnFermerMessage) {
