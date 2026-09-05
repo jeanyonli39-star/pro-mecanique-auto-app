@@ -279,3 +279,145 @@ footer{
         font-size:15px;
     }
    }
+/* =================================
+   NOUVEAU DESIGN - MOT DE PASSE
+================================= */
+
+.champ-motdepasse{
+    position:relative;
+    width:100%;
+}
+
+.champ-motdepasse input{
+    width:100%;
+    padding:12px 50px 12px 12px !important;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.btn-oeil{
+    position:absolute;
+    right:8px;
+    top:50%;
+    transform:translateY(-50%);
+    width:42px !important;
+    height:40px;
+    padding:0 !important;
+    margin:0 !important;
+    background:transparent !important;
+    color:#003366 !important;
+    font-size:20px !important;
+    border:none;
+    cursor:pointer;
+}
+
+.btn-oeil:hover{
+    opacity:0.7;
+}
+
+#aideMotdepasse{
+    display:block;
+    margin-top:2px;
+    margin-bottom:10px;
+    color:#666;
+    font-size:13px;
+}
+
+
+/* =================================
+   FENÊTRE MESSAGE DE SUCCÈS
+================================= */
+
+.message-modal{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.65);
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.message-modal-box{
+    background:white;
+    width:100%;
+    max-width:420px;
+    padding:30px 25px;
+    border-radius:18px;
+    text-align:center;
+    box-shadow:0 10px 35px rgba(0,0,0,0.3);
+    animation:apparitionMessage 0.3s ease;
+}
+
+.message-icon{
+    font-size:55px;
+    margin-bottom:10px;
+}
+
+.message-modal-box h2{
+    color:#003366;
+    font-size:24px;
+    margin-bottom:12px;
+}
+
+.message-modal-box p{
+    color:#555;
+    font-size:16px;
+    line-height:1.5;
+    margin-bottom:20px;
+}
+
+.message-modal-box .btn{
+    display:inline-block;
+    width:auto;
+    min-width:150px;
+    background:#003366;
+}
+
+.message-modal-box .btn:hover{
+    background:#004b8d;
+    opacity:1;
+}
+
+
+/* Animation */
+
+@keyframes apparitionMessage{
+
+    from{
+        opacity:0;
+        transform:scale(0.85);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media(max-width:600px){
+
+    .message-modal-box{
+        padding:25px 20px;
+    }
+
+    .message-modal-box h2{
+        font-size:21px;
+    }
+
+    .message-modal-box p{
+        font-size:15px;
+    }
+
+   }
