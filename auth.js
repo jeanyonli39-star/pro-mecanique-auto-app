@@ -456,3 +456,22 @@ btnConnexionCompte.addEventListener(
 
     }
 );
+const btnAfficherMotdepasse = document.getElementById("btnAfficherMotdepasse");
+const champMotdepasse = document.getElementById("motdepasse");
+
+if (btnAfficherMotdepasse && champMotdepasse) {
+  btnAfficherMotdepasse.addEventListener("click", () => {
+    const motdepasseVisible = champMotdepasse.type === "text";
+
+    champMotdepasse.type = motdepasseVisible ? "password" : "text";
+
+    btnAfficherMotdepasse.textContent = motdepasseVisible ? "👁️" : "🙈";
+
+    btnAfficherMotdepasse.setAttribute(
+      "aria-label",
+      motdepasseVisible
+        ? "Afficher le mot de passe"
+        : "Masquer le mot de passe"
+    );
+  });
+}
