@@ -41,7 +41,68 @@ function recupererValeur(id) {
     }
 
     return element.value.trim();
+}
 
+
+// ===============================
+// FONCTION POUR AFFICHER
+// UN MESSAGE SIMPLE
+// ===============================
+
+function afficherMessage(message) {
+    alert(message);
+}
+
+
+// ===============================
+// FONCTION POUR VIDER
+// LE FORMULAIRE D'INSCRIPTION
+// ===============================
+
+function viderFormulaireInscription() {
+
+    const ids = [
+        "nom",
+        "email",
+        "motdepasse",
+        "telephone",
+        "telephoneWhatsApp",
+        "telephoneSecretaire",
+        "ville",
+        "metier",
+        "description"
+    ];
+
+    ids.forEach((id) => {
+
+        const element =
+            document.getElementById(id);
+
+        if (!element) {
+            return;
+        }
+
+        if (element.tagName === "SELECT") {
+            element.selectedIndex = 0;
+        } else {
+            element.value = "";
+        }
+
+    });
+
+    const typeCompte =
+        document.getElementById("typeCompte");
+
+    if (typeCompte) {
+        typeCompte.value = "artisan";
+    }
+
+    const champsArtisan =
+        document.getElementById("champsArtisan");
+
+    if (champsArtisan) {
+        champsArtisan.style.display = "block";
+    }
 }
 
 
@@ -73,17 +134,31 @@ btnCreerCompte.addEventListener(
 
 
             // ===============================
-            // VERIFICATION
+            // VERIFICATION PRINCIPALE
             // ===============================
 
             if (!nom || !email || !motdepasse) {
 
-                alert(
+                afficherMessage(
                     "❌ Veuillez remplir le nom, l'adresse e-mail et le mot de passe."
                 );
 
                 return;
+            }
 
+
+            // ===============================
+            // VERIFICATION MOT DE PASSE
+            // MINIMUM 8 CARACTERES
+            // ===============================
+
+            if (motdepasse.length < 8) {
+
+                afficherMessage(
+                    "❌ Le mot de passe doit contenir au minimum 8 caractères."
+                );
+
+                return;
             }
 
 
@@ -114,6 +189,7 @@ btnCreerCompte.addEventListener(
                     {
 
                         nom: nom,
+
                         email: email,
 
                         typeCompte: "client",
@@ -127,12 +203,16 @@ btnCreerCompte.addEventListener(
                 );
 
 
-                alert(
+                // Vider le formulaire
+                viderFormulaireInscription();
+
+
+                // Message de réussite
+                afficherMessage(
                     "✅ Compte client créé avec succès !"
                 );
 
                 return;
-
             }
 
 
@@ -175,12 +255,11 @@ btnCreerCompte.addEventListener(
                 !metier
             ) {
 
-                alert(
+                afficherMessage(
                     "❌ Veuillez remplir les informations obligatoires de l'artisan."
                 );
 
                 return;
-
             }
 
 
@@ -221,7 +300,12 @@ btnCreerCompte.addEventListener(
             );
 
 
-            alert(
+            // Vider le formulaire
+            viderFormulaireInscription();
+
+
+            // Message de réussite
+            afficherMessage(
                 "✅ Compte artisan créé avec succès !"
             );
 
@@ -233,7 +317,7 @@ btnCreerCompte.addEventListener(
                 erreur
             );
 
-            alert(
+            afficherMessage(
                 "Erreur inscription : " +
                 erreur.message
             );
@@ -242,8 +326,6 @@ btnCreerCompte.addEventListener(
 
     }
 );
-
-
 // ===============================
 // CONNEXION
 // ===============================
@@ -254,75 +336,102 @@ btnConnexionCompte.addEventListener(
 
         try {
 
-        const email =
-    recupererValeur("emailConnexion");
+            // ===============================
+            // INFORMATIONS DE CONNEXION
+            // ===============================
 
-const motdepasse =
-    recupererValeur("motdepasseConnexion");
+            const email =
+                recupererValeur("emailConnexion");
+
+            const motdepasse =
+                recupererValeur("motdepasseConnexion");
+
+
+            // ===============================
+            // VERIFICATION
+            // ===============================
 
             if (!email || !motdepasse) {
 
-                alert(
+                afficherMessage(
                     "❌ Veuillez saisir votre e-mail et votre mot de passe."
                 );
 
                 return;
-
             }
 
 
-        const resultat =
-    await signInWithEmailAndPassword(
-        auth,
-        email,
-        motdepasse
-    );
+            // ===============================
+            // CONNEXION FIREBASE
+            // ===============================
 
-const uid =
-    resultat.user.uid;
-
-
-// Vérifier si c'est un client
-const clientRef =
-    doc(db, "clients", uid);
-
-const clientSnap =
-    await getDoc(clientRef);
-
-if (clientSnap.exists()) {
-
-    alert(
-        "✅ Connexion réussie !"
-    );
-
-    window.location.href = "client.html";
-
-    return;
-}
+            const resultat =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    motdepasse
+                );
 
 
-// Sinon, vérifier si c'est un artisan
-const artisanRef =
-    doc(db, "artisans", uid);
-
-const artisanSnap =
-    await getDoc(artisanRef);
-
-if (artisanSnap.exists()) {
-
-    alert(
-        "✅ Connexion réussie !"
-    );
-
-    window.location.href = "profil.html";
-
-    return;
-}
+            const uid =
+                resultat.user.uid;
 
 
-alert(
-    "⚠️ Compte connecté, mais profil introuvable."
-);
+            // ===============================
+            // VERIFIER SI C'EST UN CLIENT
+            // ===============================
+
+            const clientRef =
+                doc(db, "clients", uid);
+
+            const clientSnap =
+                await getDoc(clientRef);
+
+
+            if (clientSnap.exists()) {
+
+                afficherMessage(
+                    "✅ Connexion réussie !"
+                );
+
+                window.location.href =
+                    "client.html";
+
+                return;
+            }
+
+
+            // ===============================
+            // VERIFIER SI C'EST UN ARTISAN
+            // ===============================
+
+            const artisanRef =
+                doc(db, "artisans", uid);
+
+            const artisanSnap =
+                await getDoc(artisanRef);
+
+
+            if (artisanSnap.exists()) {
+
+                afficherMessage(
+                    "✅ Connexion réussie !"
+                );
+
+                window.location.href =
+                    "profil.html";
+
+                return;
+            }
+
+
+            // ===============================
+            // PROFIL INTROUVABLE
+            // ===============================
+
+            afficherMessage(
+                "⚠️ Compte connecté, mais profil introuvable."
+            );
 
 
         } catch (erreur) {
@@ -332,7 +441,7 @@ alert(
                 erreur
             );
 
-            alert(
+            afficherMessage(
                 "Erreur connexion : " +
                 erreur.message
             );
