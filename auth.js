@@ -48,8 +48,18 @@ function recupererValeur(id) {
 // FONCTION POUR AFFICHER
 // UN MESSAGE SIMPLE
 // ===============================
-function afficherMessage(message) {
-    alert(message);
+function afficherMessage(message, destination = null) {
+    const modal = document.getElementById("messageModal");
+    const messageTexte = document.getElementById("messageModalTexte");
+
+    if (modal && messageTexte) {
+        messageTexte.textContent = message;
+        modal.style.display = "flex";
+
+        modal.dataset.destination = destination || "";
+    } else {
+        alert(message);
+    }
 }
 const btnFermerMessage = document.getElementById("btnFermerMessage");
 
