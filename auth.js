@@ -48,18 +48,17 @@ function recupererValeur(id) {
 // FONCTION POUR AFFICHER
 // UN MESSAGE SIMPLE
 // ===============================
-function afficherMessage(message) {
-  const modal = document.getElementById("messageModal");
-  const messageTexte = document.getElementById("messageModalTexte");
+const btnFermerMessage = document.getElementById("btnFermerMessage");
 
-  if (modal && messageTexte) {
-    messageTexte.textContent = message;
-    modal.style.display = "flex";
-  } else {
-    alert(message);
-  }
+if (btnFermerMessage) {
+  btnFermerMessage.addEventListener("click", () => {
+    const modal = document.getElementById("messageModal");
+
+    if (modal) {
+      modal.style.display = "none";
+    }
+  });
 }
-
 
 // ===============================
 // FONCTION POUR VIDER
