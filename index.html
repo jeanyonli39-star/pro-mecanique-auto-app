@@ -7,7 +7,6 @@
 <title>Pro Mécanique Auto</title>
 
 <link rel="stylesheet" href="styles.css">
-
 <link rel="manifest" href="manifest.json">
 
 <meta name="theme-color" content="#0d6efd">
@@ -55,53 +54,105 @@ Se connecter
 
 </div>
 
-<!-- Fenêtre d'inscription -->
+
+<!-- =========================
+     FENÊTRE D'INSCRIPTION
+========================= -->
 
 <div id="zoneAuth" style="display:none;">
 
 <h2>Créer un compte</h2>
-  <label for="typeCompte">Type de compte</label>
+
+<label for="typeCompte">Type de compte</label>
 
 <select id="typeCompte">
-  <option value="artisan">🔧 Artisan / Professionnel</option>
-  <option value="client">👤 Client</option>
+
+<option value="artisan">
+🔧 Artisan / Professionnel
+</option>
+
+<option value="client">
+👤 Client
+</option>
+
 </select>
+
 
 <input
 type="text"
 id="nom"
-placeholder="Nom complet">
+placeholder="Nom complet"
+autocomplete="name">
+
 
 <input
 type="email"
 id="email"
-placeholder="Adresse e-mail">
+placeholder="Adresse e-mail"
+autocomplete="email">
+
+
+<!-- MOT DE PASSE -->
+
+<div class="champ-motdepasse">
 
 <input
 type="password"
 id="motdepasse"
-placeholder="Mot de passe">
+placeholder="Mot de passe"
+autocomplete="new-password"
+minlength="8">
+
+<button
+type="button"
+id="btnAfficherMotdepasse"
+class="btn-oeil"
+aria-label="Afficher le mot de passe">
+
+👁️
+
+</button>
+
+</div>
+
+<small id="aideMotdepasse">
+🔐 Minimum 8 caractères
+</small>
+
+
+<!-- =========================
+     CHAMPS ARTISAN
+========================= -->
 
 <div id="champsArtisan">
 
 <input
 type="tel"
+id="telephone"
+placeholder="Numéro de téléphone"
+autocomplete="tel">
+
+
+<input
+type="tel"
 id="telephoneWhatsApp"
-placeholder="Numéro WhatsApp (facultatif)">
+placeholder="Numéro WhatsApp (facultatif)"
+autocomplete="tel">
+
 
 <input
 type="tel"
 id="telephoneSecretaire"
-placeholder="Numéro du secrétaire (facultatif)">
-<input
-type="tel"
-id="telephoneSecretaire"
-placeholder="Numéro du secrétaire (facultatif)">
+placeholder="Numéro du secrétaire (facultatif)"
+autocomplete="tel">
+
 
 <input
 type="text"
 id="ville"
-placeholder="Ville">
+placeholder="Ville"
+autocomplete="address-level2">
+
 
 <select id="metier">
 
@@ -151,66 +202,147 @@ Vente de pièces
 
 </select>
 
+
 <textarea
 id="description"
 placeholder="Décrivez vos services (facultatif)">
 </textarea>
+
 </div>
- <script>
-const typeCompteSelect = document.getElementById("typeCompte");
-const champsArtisan = document.getElementById("champsArtisan");
+
+
+<script>
+
+const typeCompteSelect =
+document.getElementById("typeCompte");
+
+const champsArtisan =
+document.getElementById("champsArtisan");
+
 
 function afficherChampsSelonCompte() {
 
-  if (typeCompteSelect.value === "artisan") {
+if (typeCompteSelect.value === "artisan") {
 
-    champsArtisan.style.display = "block";
+champsArtisan.style.display = "block";
 
-  } else {
+} else {
 
-    champsArtisan.style.display = "none";
-
-  }
+champsArtisan.style.display = "none";
 
 }
 
+}
+
+
 typeCompteSelect.addEventListener(
-  "change",
-  afficherChampsSelonCompte
+"change",
+afficherChampsSelonCompte
 );
 
+
 afficherChampsSelonCompte();
-</script> 
+
+</script>
+
 
 <button id="btnCreerCompte">
+
 Créer mon compte
+
 </button>
 
-</div> <!-- Fenêtre connexion -->
+</div>
+
+
+<!-- =========================
+     FENÊTRE DE CONNEXION
+========================= -->
 
 <div id="zoneConnexion" style="display:none;">
 
 <h2>Connexion</h2>
 
+
 <input
 type="email"
 id="emailConnexion"
-placeholder="Adresse e-mail">
+placeholder="Adresse e-mail"
+autocomplete="email">
+
+
+<div class="champ-motdepasse">
 
 <input
 type="password"
 id="motdepasseConnexion"
-placeholder="Mot de passe">
+placeholder="Mot de passe"
+autocomplete="current-password">
 
-<button id="btnConnexionCompte">
-Se connecter
+<button
+type="button"
+id="btnAfficherMotdepasseConnexion"
+class="btn-oeil"
+aria-label="Afficher le mot de passe">
+
+👁️
+
 </button>
 
 </div>
 
+
+<button id="btnConnexionCompte">
+
+Se connecter
+
+</button>
+
+</div>
+
+
+<!-- =========================
+     MESSAGE DE SUCCÈS
+========================= -->
+
+<div id="messageModal" class="message-modal">
+
+<div class="message-modal-box">
+
+<div class="message-icon">
+✅
+</div>
+
+<h2>Compte créé avec succès !</h2>
+
+<p id="messageModalTexte">
+Votre compte a été créé avec succès.
+</p>
+
+<button
+id="btnFermerMessage"
+class="btn">
+
+Continuer
+
+</button>
+
+</div>
+
+</div><!-- =========================
+     FIN DU MESSAGE DE SUCCÈS
+========================= -->
+
+
 </header>
 
+
+<!-- =========================
+     CONTENU PRINCIPAL
+========================= -->
+
 <main class="container">
+
 
 <section id="metiersSection">
 
@@ -222,7 +354,14 @@ Se connecter
 
 </div>
 
-</section><section id="venteSection">
+</section>
+
+
+<!-- =========================
+     ESPACE VENTE
+========================= -->
+
+<section id="venteSection">
 
 <h2>Vente Pro Mécanique Auto</h2>
 
@@ -232,9 +371,12 @@ Se connecter
 Bienvenue dans notre espace de vente de pièces automobiles.
 </p>
 
+
 <div class="vente-actions">
 
-<a id="whatsappBtn"
+
+<a
+id="whatsappBtn"
 class="btn whatsapp"
 href="https://wa.me/22660187134?text=Bonjour%20je%20souhaite%20commander%20une%20pi%C3%A8ce"
 target="_blank">
@@ -242,6 +384,7 @@ target="_blank">
 Commander via WhatsApp
 
 </a>
+
 
 <a
 class="btn call"
@@ -251,17 +394,23 @@ Appel direct
 
 </a>
 
+
 </div>
 
 </div>
+
 
 <div id="produitsList" class="produits-list">
+
 
 <div class="produit">
 
 <h3>Filtre à huile</h3>
 
-<p>Prix : À définir</p>
+<p>
+Prix : À définir
+</p>
+
 
 <a
 class="btn order"
@@ -274,25 +423,41 @@ Commander
 
 </div>
 
+
 </div>
 
 </section>
 
 </main>
 
+
+<!-- =========================
+     PIED DE PAGE
+========================= -->
+
 <footer class="site-footer">
+
 
 <nav class="footer-nav">
 
-<a href="#">Accueil</a>
+<a href="#">
+Accueil
+</a>
 
-<a href="#">Métiers</a>
+<a href="#">
+Métiers
+</a>
 
-<a href="#">Pièces</a>
+<a href="#">
+Pièces
+</a>
 
-<a href="#">Contact</a>
+<a href="#">
+Contact
+</a>
 
 </nav>
+
 
 <p>
 
@@ -304,12 +469,27 @@ Burkina Faso
 
 </p>
 
+
 </footer>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
 
 <script src="script.js"></script>
 
-<script type="module" src="firebase.js"></script>
-<script type="module" src="auth.js"></script>
+<script
+type="module"
+src="firebase.js">
+</script>
+
+<script
+type="module"
+src="auth.js">
+</script>
+
+
 </body>
 
 </html>
