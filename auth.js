@@ -494,3 +494,14 @@ if (btnAfficherMotdepasseConnexion && champMotdepasseConnexion) {
     );
   });
 }
+function afficherSuccesCreation(message) {
+  const modal = document.getElementById("messageModal");
+  const messageTexte = document.getElementById("messageModalTexte");
+
+  if (modal && messageTexte) {
+    messageTexte.textContent = message;
+    modal.style.display = "flex";
+  } else {
+    alert(message);
+  }
+}
