@@ -68,7 +68,13 @@ if (btnFermerMessage) {
     const modal = document.getElementById("messageModal");
 
     if (modal) {
+      const destination = modal.dataset.destination;
+
       modal.style.display = "none";
+
+      if (destination) {
+        window.location.href = destination;
+      }
     }
   });
 }
