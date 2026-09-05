@@ -331,8 +331,9 @@ btnCreerCompte.addEventListener(
 
 
             // Message de réussite
-            afficherSuccesCreation(
-    "✅ Compte artisan créé avec succès !"
+        afficherMessage(
+    "✅ Compte artisan créé avec succès !",
+    "profil.html"
 );
 
 
