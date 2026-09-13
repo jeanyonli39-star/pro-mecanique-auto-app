@@ -2,118 +2,401 @@
 <html lang="fr">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+  <title>Mon compte - Pro Mécanique Auto</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
 
-<title>Profil Artisan - Pro Mécanique Auto</title>
+  <style>
+    /* ===============================
+       ESPACE CLIENT
+       =============================== */
 
-<link rel="stylesheet" href="styles.css">
+    .client-page {
+      min-height: 100vh;
+      padding: 30px 15px 50px;
+      background: #f3f6f9;
+    }
 
+    .client-card {
+      width: 100%;
+      max-width: 520px;
+      margin: 0 auto;
+      background: #ffffff;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    /* En-tête */
+    .client-header {
+      background: linear-gradient(135deg, #003366, #075b96);
+      color: white;
+      text-align: center;
+      padding: 30px 20px 35px;
+    }
+
+    .client-avatar {
+      width: 95px;
+      height: 95px;
+      margin: 0 auto 15px;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .client-header h1 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 700;
+    }
+
+    .client-header p {
+      margin: 7px 0 0;
+      font-size: 15px;
+      opacity: 0.9;
+    }
+
+    .client-status {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 6px 14px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      font-size: 13px;
+    }
+
+    /* Informations */
+    .client-informations {
+      padding: 25px 20px 10px;
+    }
+
+    .client-section-title {
+      margin: 0 0 18px;
+      color: #003366;
+      font-size: 19px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid #eeeeee;
+    }
+
+    .info-item:last-child {
+      border-bottom: none;
+    }
+
+    .info-icon {
+      width: 42px;
+      height: 42px;
+      min-width: 42px;
+      border-radius: 12px;
+      background: #eef5fb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+    }
+
+    .info-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .info-label {
+      display: block;
+      color: #777;
+      font-size: 12px;
+      margin-bottom: 3px;
+    }
+
+    .info-value {
+      display: block;
+      color: #222;
+      font-size: 15px;
+      font-weight: 600;
+      word-break: break-word;
+    }
+
+    /* Boutons */
+    .client-actions {
+      padding: 15px 20px 25px;
+    }
+
+    .client-action {
+      width: 100%;
+      margin-top: 12px;
+      padding: 14px 16px;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .client-action:first-child {
+      margin-top: 0;
+    }
+
+    .btn-principal {
+      background: #003366;
+      color: white;
+    }
+
+    .btn-principal:hover {
+      background: #004b8d;
+    }
+
+    .btn-secondaire {
+      background: #eef5fb;
+      color: #003366;
+    }
+
+    .btn-secondaire:hover {
+      background: #dcecf8;
+    }
+
+    .btn-deconnexion {
+      background: #ff6b00;
+      color: white;
+    }
+
+    .btn-deconnexion:hover {
+      background: #e85d00;
+    }
+
+    /* Pied de page */
+    .client-footer {
+      text-align: center;
+      padding: 0 20px 25px;
+      color: #888;
+      font-size: 12px;
+    }
+
+    /* Téléphone */
+    @media (max-width: 600px) {
+
+      .client-page {
+        padding: 15px 10px 35px;
+      }
+
+      .client-header {
+        padding: 25px 15px 30px;
+      }
+
+      .client-header h1 {
+        font-size: 24px;
+      }
+
+      .client-avatar {
+        width: 85px;
+        height: 85px;
+        font-size: 45px;
+      }
+
+      .client-informations {
+        padding: 22px 17px 5px;
+      }
+
+      .client-actions {
+        padding: 12px 17px 22px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="site-header">
+  <div class="client-page">
 
-<div class="header-inner">
+    <div class="client-card">
 
-<img src="images/logo.png" id="site-logo" alt="Logo">
+      <!-- ===============================
+           EN-TÊTE DU COMPTE
+           =============================== -->
 
-<div>
+      <div class="client-header">
 
-<h1>PRO MÉCANIQUE AUTO</h1>
+        <div class="client-avatar">
+          👤
+        </div>
 
-<p>Profil de l'artisan</p>
+        <h1 id="nomClient">Chargement...</h1>
 
-</div>
+        <p>
+          Mon espace client
+        </p>
 
-</div>
+        <div class="client-status">
+          🟢 Compte actif
+        </div>
 
-</header>
+      </div>
 
-<main class="container">
 
-<div class="vente-box">
+      <!-- ===============================
+           INFORMATIONS DU CLIENT
+           =============================== -->
 
-  <div style="text-align:center; margin-bottom:20px;">
+      <div class="client-informations">
 
-    <img
-      id="photoArtisan"
-      src="images/profil.png"
-      alt="Photo de profil"
-      style="width:150px; height:150px; border-radius:50%; object-fit:cover; border:4px solid #0d6efd;">
+        <h2 class="client-section-title">
+          📋 Mes informations
+        </h2>
 
-    <input
-      type="file"
-      id="photoInput"
-      accept="image/*"
-      style="display:none;">
 
-    <br><br>
+        <div class="info-item">
 
-    <button
-      id="btnChangerPhoto"
-      class="btn">
+          <div class="info-icon">
+            👤
+          </div>
 
-      Changer la photo
+          <div class="info-text">
 
-    </button>
+            <span class="info-label">
+              Type de compte
+            </span>
+
+            <span
+              class="info-value"
+              id="typeCompteClient">
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="info-item">
+
+          <div class="info-icon">
+            📧
+          </div>
+
+          <div class="info-text">
+
+            <span class="info-label">
+              E-mail
+            </span>
+
+            <span
+              class="info-value"
+              id="emailClient">
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="info-item">
+
+          <div class="info-icon">
+            📞
+          </div>
+
+          <div class="info-text">
+
+            <span class="info-label">
+              Téléphone
+            </span>
+
+            <span
+              class="info-value"
+              id="telephoneClient">
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="info-item">
+
+          <div class="info-icon">
+            📍
+          </div>
+
+          <div class="info-text">
+
+            <span class="info-label">
+              Ville
+            </span>
+
+            <span
+              class="info-value"
+              id="villeClient">
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ===============================
+           ACTIONS
+           =============================== -->
+
+      <div class="client-actions">
+
+        <button
+          id="btnAccueil"
+          class="client-action btn-principal">
+          🏠 Retour à l'accueil
+        </button>
+
+
+        <button
+          class="client-action btn-secondaire"
+          onclick="alert('Cette fonction sera disponible prochainement.')">
+          ✏️ Modifier mon profil
+        </button>
+
+
+        <button
+          class="client-action btn-secondaire"
+          onclick="alert('La messagerie sera disponible prochainement.')">
+          💬 Mes messages
+        </button>
+
+
+        <button
+          class="client-action btn-deconnexion"
+          id="btnDeconnexion">
+          🚪 Déconnexion
+        </button>
+
+      </div>
+
+
+      <div class="client-footer">
+        Pro Mécanique Auto
+        <br>
+        Service auto rapide et garanti
+      </div>
+
+    </div>
 
   </div>
 
-</div>
 
-<h2 id="nomArtisan">Chargement...</h2>
+  <!-- ===============================
+       JAVASCRIPT
+       =============================== -->
 
-<p><strong>Métier :</strong> <span id="metierArtisan"></span></p>
-
-<p><strong>Ville :</strong> <span id="villeArtisan"></span></p>
-
-<p>
-  <strong>📞 Numéro principal :</strong>
-  <span id="telephoneArtisan"></span>
-</p>
-
-<p id="zoneWhatsApp">
-  <strong>💬 WhatsApp :</strong>
-  <span id="telephoneWhatsApp"></span>
-</p>
-
-<p id="zoneSecretaire">
-  <strong>📞 Secrétaire :</strong>
-  <span id="telephoneSecretaire"></span>
-</p>
-  <br>
-
-<a
-id="btnWhatsApp"
-class="btn whatsapp"
-href="#"
-target="_blank">
-
-Contacter sur WhatsApp
-
-</a>
-
-<p><strong>Description :</strong></p>
-
-<p id="descriptionArtisan"></p>
-
-</div>
-
-<br>
-
-<a href="artisans.html" class="btn">
-
-⬅ Retour aux artisans
-
-</a>
-
-</main>
-
-<script type="module" src="profil.js"></script>
+  <script type="module" src="client.js"></script>
 
 </body>
 
