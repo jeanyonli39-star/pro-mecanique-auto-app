@@ -527,3 +527,16 @@ function afficherSuccesCreation(message) {
     alert(message);
   }
 }
+// ===============================
+// DETECTION AUTOMATIQUE DE LA SESSION
+// ===============================
+
+onAuthStateChanged(auth, (user) => {
+
+    if (user) {
+        console.log("✅ Utilisateur déjà connecté :", user.email);
+    } else {
+        console.log("ℹ️ Aucun utilisateur connecté.");
+    }
+
+});
