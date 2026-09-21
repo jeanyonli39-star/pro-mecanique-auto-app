@@ -530,13 +530,90 @@ function afficherSuccesCreation(message) {
 // ===============================
 // DETECTION AUTOMATIQUE DE LA SESSION
 // ===============================
+// ===============================
+// DETECTION AUTOMATIQUE DE LA SESSION
+// ===============================
 
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, async (user) => {
 
-    if (user) {
-        console.log("✅ Utilisateur déjà connecté :", user.email);
-    } else {
-        console.log("ℹ️ Aucun utilisateur connecté.");
+    const btnMonCompte =
+        document.getElementById("btnMonCompte");
+
+    const btnInscription =
+        document.getElementById("btnInscription");
+
+    const btnConnexion =
+        document.getElementById("btnConnexion");
+
+    // Aucun utilisateur connecté
+    if (!user) {
+
+        if (btnMonCompte) {
+            btnMonCompte.style.display = "none";
+        }
+
+        if (btnInscription) {
+            btnInscription.style.display = "inline-block";
+        }
+
+        if (btnConnexion) {
+            btnConnexion.style.display = "inline-block";
+        }
+
+        return;
+    }
+
+    // Utilisateur connecté
+    console.log(
+        "✅ Utilisateur déjà connecté :",
+        user.email
+    );
+
+    if (btnInscription) {
+        btnInscription.style.display = "none";
+    }
+
+    if (btnConnexion) {
+        btnConnexion.style.display = "none";
+    }
+
+    if (btnMonCompte) {
+        btnMonCompte.style.display = "inline-block";
+
+        // Vérifier le type de compte
+        const clientSnap =
+            await getDoc(
+                doc(db, "clients", user.uid)
+            );
+
+        if (clientSnap.exists()) {
+
+            btnMonCompte.textContent =
+                "👤 Mon compte";
+
+            btnMonCompte.onclick = () => {
+                window.location.href =
+                    "client.html";
+            };
+
+            return;
+        }
+
+        const artisanSnap =
+            await getDoc(
+                doc(db, "artisans", user.uid)
+            );
+
+        if (artisanSnap.exists()) {
+
+            btnMonCompte.textContent =
+                "🔧 Mon profil";
+
+            btnMonCompte.onclick = () => {
+                window.location.href =
+                    "profil.html";
+            };
+        }
     }
 
 });
