@@ -534,10 +534,23 @@ function afficherSuccesCreation(message) {
 // DETECTION AUTOMATIQUE DE LA SESSION
 // ===============================
 
+// ===============================
+// DETECTION AUTOMATIQUE DE LA SESSION
+// ===============================
+
 onAuthStateChanged(auth, async (user) => {
 
     const btnMonCompte =
         document.getElementById("btnMonCompte");
+
+    const btnMessages =
+        document.getElementById("btnMessages");
+
+    const btnParametres =
+        document.getElementById("btnParametres");
+
+    const btnDeconnexion =
+        document.getElementById("btnDeconnexion");
 
     const btnInscription =
         document.getElementById("btnInscription");
@@ -545,11 +558,27 @@ onAuthStateChanged(auth, async (user) => {
     const btnConnexion =
         document.getElementById("btnConnexion");
 
-    // Aucun utilisateur connecté
+
+    // ===============================
+    // AUCUN UTILISATEUR CONNECTÉ
+    // ===============================
+
     if (!user) {
 
         if (btnMonCompte) {
             btnMonCompte.style.display = "none";
+        }
+
+        if (btnMessages) {
+            btnMessages.style.display = "none";
+        }
+
+        if (btnParametres) {
+            btnParametres.style.display = "none";
+        }
+
+        if (btnDeconnexion) {
+            btnDeconnexion.style.display = "none";
         }
 
         if (btnInscription) {
@@ -563,11 +592,16 @@ onAuthStateChanged(auth, async (user) => {
         return;
     }
 
-    // Utilisateur connecté
+
+    // ===============================
+    // UTILISATEUR CONNECTÉ
+    // ===============================
+
     console.log(
-        "✅ Utilisateur déjà connecté :",
+        "✅ Utilisateur connecté :",
         user.email
     );
+
 
     if (btnInscription) {
         btnInscription.style.display = "none";
@@ -579,30 +613,50 @@ onAuthStateChanged(auth, async (user) => {
 
     if (btnMonCompte) {
         btnMonCompte.style.display = "inline-block";
+    }
 
-        // Vérifier le type de compte
-        const clientSnap =
-            await getDoc(
-                doc(db, "clients", user.uid)
-            );
+    if (btnMessages) {
+        btnMessages.style.display = "inline-block";
+    }
 
-        if (clientSnap.exists()) {
+    if (btnParametres) {
+        btnParametres.style.display = "inline-block";
+    }
 
-            btnMonCompte.textContent =
-                "👤 Mon compte";
+    if (btnDeconnexion) {
+        btnDeconnexion.style.display = "inline-block";
+    }
 
-            btnMonCompte.onclick = () => {
-                window.location.href =
-                    "client.html";
-            };
 
-            return;
-        }
+    // ===============================
+    // IDENTIFIER LE TYPE DE COMPTE
+    // ===============================
+
+    const clientSnap =
+        await getDoc(
+            doc(db, "clients", user.uid)
+        );
+
+
+    if (clientSnap.exists()) {
+
+        btnMonCompte.textContent =
+            "👤 Mon compte";
+
+        btnMonCompte.onclick = () => {
+
+            window.location.href =
+                "client.html";
+
+        };
+
+    } else {
 
         const artisanSnap =
             await getDoc(
                 doc(db, "artisans", user.uid)
             );
+
 
         if (artisanSnap.exists()) {
 
@@ -610,10 +664,86 @@ onAuthStateChanged(auth, async (user) => {
                 "🔧 Mon profil";
 
             btnMonCompte.onclick = () => {
+
                 window.location.href =
                     "profil.html";
+
             };
+
         }
+
+    }
+
+
+    // ===============================
+    // MESSAGES
+    // ===============================
+
+    if (btnMessages) {
+
+        btnMessages.onclick = () => {
+
+            alert(
+                "💬 La messagerie sera disponible prochainement."
+            );
+
+        };
+
+    }
+
+
+    // ===============================
+    // PARAMÈTRES
+    // ===============================
+
+    if (btnParametres) {
+
+        btnParametres.onclick = () => {
+
+            alert(
+                "⚙️ Les paramètres seront disponibles prochainement."
+            );
+
+        };
+
+    }
+
+
+    // ===============================
+    // DÉCONNEXION
+    // ===============================
+
+    if (btnDeconnexion) {
+
+        btnDeconnexion.onclick = async () => {
+
+            try {
+
+                const { signOut } =
+                    await import(
+                        "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js"
+                    );
+
+                await signOut(auth);
+
+                window.location.href =
+                    "index.html";
+
+            } catch (erreur) {
+
+                console.error(
+                    "Erreur déconnexion :",
+                    erreur
+                );
+
+                afficherMessage(
+                    "❌ Impossible de se déconnecter. Veuillez réessayer."
+                );
+
+            }
+
+        };
+
     }
 
 });
